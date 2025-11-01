@@ -1,0 +1,37 @@
+🧪 TEST: Customer triggering test video generation
+🧪 TEST: User dujx3388 (user_19t0ngmjS3ya9) requesting test video
+🧪 TEST: Using creator user_6SjB1Wo0chseh for video generation
+🧪 TEST: Found existing customer record for dujx3388
+🧪 TEST: Personalized script: Hey dujx3388! This is Prince from Test company, Welcome to our community dujx3388! . We're excited to have you here! Finally this is working! I promise i will crushed that fucking kartik guy!
+🎵 Starting audio generation for dujx3388
+✅ Created audio message record for dujx3388
+🐟 Checking Fish Audio model 51cee235ee474edd850300b8c38d3f36...
+🐟 Getting Fish Audio model: 51cee235ee474edd850300b8c38d3f36
+🐟 Generating speech with Fish Audio for dujx3388
+🐟 Generating speech with Fish Audio model: 51cee235ee474edd850300b8c38d3f36
+🐟 Text: Hey dujx3388! This is Prince from Test company, Welcome to our community dujx3388! . We're excited t...
+🐟 Speech generated successfully
+📤 Uploading welcome-user_19t0ngmjS3ya9.mp3 to Whop using native Node.js File API...
+📦 Created File object: welcome-user_19t0ngmjS3ya9.mp3, size: 314305, type: audio/mpeg
+❌ Error uploading audio to Whop: Error: Failed to prepare file
+    at Object.prepareAttachmentForUpload (/home/runner/workspace/node_modules/@whop/api/src/attachments/prepare.ts:47:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.uploadAttachment (/home/runner/workspace/node_modules/@whop/api/src/attachments/upload.ts:143:7)
+    at async uploadAudioToWhop (/home/runner/workspace/server/routes.ts:26:28)
+    at async generateWelcomeAudio (/home/runner/workspace/server/routes.ts:94:28)
+    at async <anonymous> (/home/runner/workspace/server/routes.ts:1561:48)
+❌ Error generating audio for dujx3388: Error: Failed to prepare file
+    at Object.prepareAttachmentForUpload (/home/runner/workspace/node_modules/@whop/api/src/attachments/prepare.ts:47:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.uploadAttachment (/home/runner/workspace/node_modules/@whop/api/src/attachments/upload.ts:143:7)
+    at async uploadAudioToWhop (/home/runner/workspace/server/routes.ts:26:28)
+    at async generateWelcomeAudio (/home/runner/workspace/server/routes.ts:94:28)
+    at async <anonymous> (/home/runner/workspace/server/routes.ts:1561:48)
+❌ Error triggering test video: Error: Failed to prepare file
+    at Object.prepareAttachmentForUpload (/home/runner/workspace/node_modules/@whop/api/src/attachments/prepare.ts:47:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.uploadAttachment (/home/runner/workspace/node_modules/@whop/api/src/attachments/upload.ts:143:7)
+    at async uploadAudioToWhop (/home/runner/workspace/server/routes.ts:26:28)
+    at async generateWelcomeAudio (/home/runner/workspace/server/routes.ts:94:28)
+    at async <anonymous> (/home/runner/workspace/server/routes.ts:1561:48)
+8:14:06 AM [express] POST /api/customer/trigger-test-video 500 in 7633ms :: {"error":"Failed to prep…

@@ -1,0 +1,37 @@
+🧪 TEST: Customer triggering test video generation
+🧪 TEST: User dujx3388 (user_19t0ngmjS3ya9) requesting test video
+🧪 TEST: Using creator user_6SjB1Wo0chseh for video generation
+🧪 TEST: Found existing customer record for dujx3388
+🧪 TEST: Personalized script: Hi dujx3388! Welcome to our community. We're excited to have you here!
+🧪 TEST: Created video record 68fb044db9126a3a6d61735d
+🎥 Calling HeyGen Avatar IV API...
+🧪 TEST: Using FREE API with audio file
+📤 Sending to HeyGen FREE API (talking photo + audio): {
+  "avatar_image_url": "https://4b85ba6b-4d21-4d8c-979f-4c1a0d11516c-00-3e4k7ghl44vds.sisko.replit.dev/uploads/avatars/avatar-68f676e569fe6de74e0bd137-1761280686283.png",
+  "input_audio_url": "https://resource2.heygen.ai/audio/e1c78f7de9b74e36820ac8a04da65cac/original",
+  "test": true,
+  "title": "Welcome video for dujx3388"
+}
+📁 Reading avatar from filesystem: /home/runner/workspace/uploads/avatars/avatar-68f676e569fe6de74e0bd137-1761280686283.png
+✅ Read 2004029 bytes from filesystem, type: image/png
+Fetched image buffer size: 2004029 bytes, type: image/png
+Uploading talking photo to HeyGen: avatar.jpg, size: 2004029 bytes, type: image/png
+HeyGen talking photo upload response status: 200
+HeyGen talking photo upload response body: {"code":100,"data":{"talking_photo_id":"1ca343090f634267adc292035bc0023e","talking_photo_url":"https://files2.heygen.ai/prod/movio/url_upload/user_upload/7d62570070314e6abc05c91603dcb9a2/7cf28d4d3fcd45f0a3db6590f38a3f71.image/png?Expires=1761885907&Signature=pWaEIVaJAOWHKwzbbGW1YJBbnGNCu-6xJyO4f7jK~ZMy2rLwe~xePMZ73ZiBoV0pq3dCCT9d5DcdgmZ7KNo2VLNC1TddfBvPtdfkiqpotlG3LvO-0QqJSCSBO8DfZttxAql4sRQMBlm0u2EWcYjI3izL6hvvXsUWReb9C6ZlyefeGMqRfnpghKCJHfW9VrSG~bAtIbjXXlQIsOsgHaw9dW2VKKS6xPbGwSNeDCvTOEMjuuRiYg2abjlPCghiBoujf2rH8gYl~~ebmlM~FfdyeggAmREAzRxYwrZy3A6VPrd5-QfPzpYCIl-VAl9~vmK7KQj~K1PRcseuqLRmWUKcww__&Key-Pair-Id=K38HBHX5LX3X2H"},"msg":null,"message":null}
+✅ Talking photo uploaded with ID: 1ca343090f634267adc292035bc0023e
+📥 HeyGen FREE API response: {
+  "error": null,
+  "data": {
+    "video_id": "5b2580b1a7be467ebf4aa70bd67e82ae"
+  }
+}
+✅ HeyGen video generation started! Video ID: 5b2580b1a7be467ebf4aa70bd67e82ae
+4:45:08 AM [express] POST /api/customer/trigger-test-video 200 in 7231ms :: {"success":true,"message…
+4:45:10 AM [express] GET /api/customer/welcome-status 200 in 1649ms :: {"hasWelcomeVideo":false,"vid…
+📹 Polling: Found 1 video(s) being generated...
+📹 Video 5b2580b1a7be467ebf4aa70bd67e82ae status: failed
+❌ Video 5b2580b1a7be467ebf4aa70bd67e82ae failed: {
+  code: 'RESOLUTION_NOT_ALLOWED',
+  detail: 'Please subscribe to higher plan to generate higher resolution videos',
+  message: 'Please subscribe to higher plan to generate higher resolution videos'
+}
