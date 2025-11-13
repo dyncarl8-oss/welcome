@@ -1,0 +1,267 @@
+Members
+List members
+List the members of a company
+
+Required permissions:
+
+member:basic:read
+member:email:read
+member:phone:read
+GET
+/
+members
+
+Try it
+Authorizations
+​
+Authorization
+stringheaderrequired
+The app API key from an app from the /dashboard/developer page
+
+Query Parameters
+​
+after
+string | null
+Returns the elements in the list that come after the specified cursor.
+
+​
+before
+string | null
+Returns the elements in the list that come before the specified cursor.
+
+​
+first
+integer | null
+Returns the first n elements from the list.
+
+Example:
+42
+
+​
+last
+integer | null
+Returns the last n elements from the list.
+
+Example:
+42
+
+​
+company_id
+stringrequired
+The ID of the company to list members for
+
+Example:
+"biz_xxxxxxxxxxxxxx"
+
+​
+direction
+enum<string> | null
+The direction to sort the members by
+The direction of the sort.
+
+Available options: asc, desc 
+​
+order
+enum<string> | null
+The order to sort the members by
+Which columns can be used to sort.
+
+Available options: id, usd_total_spent, created_at, joined_at, most_recent_action 
+​
+created_before
+string<date-time> | null
+The maximum creation date to filter by
+
+Example:
+"2023-12-01T05:00:00.401Z"
+
+​
+created_after
+string<date-time> | null
+The minimum creation date to filter by
+
+Example:
+"2023-12-01T05:00:00.401Z"
+
+​
+access_level
+enum<string> | null
+The access level to filter the members by
+The access level a given user (or company) has to a product or company.
+
+Available options: no_access, admin, customer 
+​
+product_ids
+string[] | null
+The product IDs to filter the members by
+
+Represents a unique identifier that is Base64 obfuscated. It is often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as "VXNlci0xMA==") or integer (such as 4) input value will be accepted as an ID.
+
+​
+plan_ids
+string[] | null
+The plan IDs to filter the members by
+
+Represents a unique identifier that is Base64 obfuscated. It is often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as "VXNlci0xMA==") or integer (such as 4) input value will be accepted as an ID.
+
+​
+user_ids
+string[] | null
+The user IDs to filter the members by
+
+Represents a unique identifier that is Base64 obfuscated. It is often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as "VXNlci0xMA==") or integer (such as 4) input value will be accepted as an ID.
+
+​
+statuses
+enum<string>[] | null
+The statuses to filter the members by
+
+Hide child attributes
+
+​
+enum<string>
+The different statuses a Member can have.
+
+Available options: drafted, joined, left 
+​
+promo_code_ids
+string[] | null
+The promo code IDs to filter the members by
+
+Represents a unique identifier that is Base64 obfuscated. It is often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as "VXNlci0xMA==") or integer (such as 4) input value will be accepted as an ID.
+
+​
+most_recent_actions
+enum<string>[] | null
+The most recent actions to filter the members by
+
+Hide child attributes
+
+​
+enum<string>
+The different most recent actions a member can have.
+
+Available options: canceling, churned, finished_split_pay, paused, paid_subscriber, paid_once, expiring, joined, drafted, left, trialing, pending_entry, renewing, past_due 
+​
+query
+string | null
+The name, username, or email to filter the members by. The email filter will only apply if the current actor has the member:email:read permission.
+
+Response
+
+200
+
+application/json
+A successful response
+
+The connection type for CompanyMember.
+
+​
+data
+object[]required
+A list of nodes.
+
+Hide child attributes
+
+​
+id
+stringrequired
+The ID of the member
+
+​
+created_at
+string<date-time>required
+When the member was created
+
+Example:
+"2023-12-01T05:00:00.401Z"
+
+​
+updated_at
+string<date-time>required
+The timestamp of when this member was last updated
+
+Example:
+"2023-12-01T05:00:00.401Z"
+
+​
+joined_at
+string<date-time>required
+When the member joined the company
+
+Example:
+"2023-12-01T05:00:00.401Z"
+
+​
+access_level
+enum<string>required
+The access level of the product member. If its admin, the member is an authorized user of the company. If its customer, the member has a valid membership to any product on the company. If its no_access, the member does not have access to the product.
+
+Available options: no_access, admin, customer 
+​
+status
+enum<string>required
+The status of the member
+
+Available options: drafted, joined, left 
+​
+most_recent_action
+enum<string> | nullrequired
+The most recent action the member has taken.
+The different most recent actions a member can have.
+
+Available options: canceling, churned, finished_split_pay, paused, paid_subscriber, paid_once, expiring, joined, drafted, left, trialing, pending_entry, renewing, past_due 
+​
+most_recent_action_at
+string<date-time> | nullrequired
+The time for the most recent action, if applicable.
+
+Example:
+"2023-12-01T05:00:00.401Z"
+
+​
+user
+object | nullrequired
+The user for this member, if any.
+
+Show child attributes
+
+​
+phone
+string | nullrequired
+The phone number for the member, if available.
+
+​
+usd_total_spent
+numberrequired
+How much money this customer has spent on the company's products and plans
+
+Example:
+6.9
+
+​
+page_info
+objectrequired
+Information to aid in pagination.
+
+Hide child attributes
+
+​
+page_info.end_cursor
+string | nullrequired
+When paginating forwards, the cursor to continue.
+
+​
+page_info.start_cursor
+string | nullrequired
+When paginating backwards, the cursor to continue.
+
+​
+page_info.has_next_page
+booleanrequired
+When paginating forwards, are there more items?
+
+​
+page_info.has_previous_page
+booleanrequired
+When paginating backwards, are there more items?

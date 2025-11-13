@@ -1,0 +1,378 @@
+Memberships
+List memberships
+Lists memberships
+
+Required permissions:
+
+member:basic:read
+GET
+/
+memberships
+
+Try it
+Authorizations
+​
+Authorization
+stringheaderrequired
+The app API key from an app from the /dashboard/developer page
+
+Query Parameters
+​
+after
+string | null
+Returns the elements in the list that come after the specified cursor.
+
+​
+before
+string | null
+Returns the elements in the list that come before the specified cursor.
+
+​
+first
+integer | null
+Returns the first n elements from the list.
+
+Example:
+42
+
+​
+last
+integer | null
+Returns the last n elements from the list.
+
+Example:
+42
+
+​
+company_id
+string | null
+The ID of the company to list memberships for
+
+Example:
+"biz_xxxxxxxxxxxxxx"
+
+​
+direction
+enum<string> | null
+The direction to sort the memberships by
+The direction of the sort.
+
+Available options: asc, desc 
+​
+order
+enum<string> | null
+The order to sort the memberships by
+Which columns can be used to sort.
+
+Available options: id, created_at, status, canceled_at, date_joined, total_spend 
+​
+product_ids
+string[] | null
+The product IDs to filter the memberships by
+
+Represents a unique identifier that is Base64 obfuscated. It is often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as "VXNlci0xMA==") or integer (such as 4) input value will be accepted as an ID.
+
+​
+statuses
+enum<string>[] | null
+The membership status to filter the memberships by
+
+Hide child attributes
+
+​
+enum<string>
+The status of a membership
+
+Available options: trialing, active, past_due, completed, canceled, expired, unresolved, drafted 
+​
+cancel_options
+enum<string>[] | null
+The cancel options to filter the memberships by
+
+Hide child attributes
+
+​
+enum<string>
+The different reasons a user can choose for why they are canceling their membership.
+
+Available options: too_expensive, switching, missing_features, technical_issues, bad_experience, other, testing 
+​
+plan_ids
+string[] | null
+The plan IDs to filter the memberships by
+
+Represents a unique identifier that is Base64 obfuscated. It is often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as "VXNlci0xMA==") or integer (such as 4) input value will be accepted as an ID.
+
+​
+user_ids
+string[] | null
+Only return memberships from these whop user ids
+
+Represents a unique identifier that is Base64 obfuscated. It is often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as "VXNlci0xMA==") or integer (such as 4) input value will be accepted as an ID.
+
+​
+promo_code_ids
+string[] | null
+The promo code IDs to filter the memberships by
+
+Represents a unique identifier that is Base64 obfuscated. It is often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as "VXNlci0xMA==") or integer (such as 4) input value will be accepted as an ID.
+
+​
+created_before
+string<date-time> | null
+The maximum creation date to filter by
+
+Example:
+"2023-12-01T05:00:00.401Z"
+
+​
+created_after
+string<date-time> | null
+The minimum creation date to filter by
+
+Example:
+"2023-12-01T05:00:00.401Z"
+
+Response
+
+200
+
+application/json
+A successful response
+
+The connection type for PublicMembership.
+
+​
+data
+object[]required
+A list of nodes.
+
+Hide child attributes
+
+​
+id
+stringrequired
+The ID of the membership
+
+Example:
+"mem_xxxxxxxxxxxxxx"
+
+​
+status
+enum<string>required
+The status of the membership.
+
+Available options: trialing, active, past_due, completed, canceled, expired, unresolved, drafted 
+​
+created_at
+string<date-time>required
+The timestamp, in seconds, that this Membership was created at.
+
+Example:
+"2023-12-01T05:00:00.401Z"
+
+​
+updated_at
+string<date-time>required
+A timestamp of when the membership was last updated
+
+Example:
+"2023-12-01T05:00:00.401Z"
+
+​
+manage_url
+string | nullrequired
+The URL for the customer to manage their membership.
+
+​
+member
+object | nullrequired
+The Member that this Membership belongs to.
+
+Hide child attributes
+
+​
+member.id
+stringrequired
+The ID of the member
+
+Example:
+"mber_xxxxxxxxxxxxx"
+
+​
+user
+object | nullrequired
+The user this membership belongs to
+
+Hide child attributes
+
+​
+user.id
+stringrequired
+The internal ID of the user.
+
+Example:
+"user_xxxxxxxxxxxxx"
+
+​
+user.username
+stringrequired
+The username of the user from their Whop account.
+
+​
+user.name
+string | nullrequired
+The name of the user from their Whop account.
+
+​
+renewal_period_start
+string<date-time> | nullrequired
+The timestamp in seconds at which the current billing cycle for this subscription start. Only applies for memberships that have a renewal plan.
+
+Example:
+"2023-12-01T05:00:00.401Z"
+
+​
+renewal_period_end
+string<date-time> | nullrequired
+The timestamp in seconds at which the current billing cycle for this subscription ends. Only applies for memberships that have a renewal plan.
+
+Example:
+"2023-12-01T05:00:00.401Z"
+
+​
+cancel_at_period_end
+booleanrequired
+Whether this Membership is set to cancel at the end of the current billing cycle. Only applies for memberships that have a renewal plan.
+
+​
+cancellation_reason
+string | nullrequired
+The reason that the member canceled the membership (filled out by the member).
+
+​
+canceled_at
+string<date-time> | nullrequired
+The epoch timestamp of when the customer initiated a cancellation.
+
+Example:
+"2023-12-01T05:00:00.401Z"
+
+​
+currency
+enum<string> | nullrequired
+The currency the membership is in.
+The available currencies on the platform
+
+Available options: usd, sgd, inr, aud, brl, cad, dkk, eur, nok, gbp, sek, chf, hkd, huf, jpy, mxn, myr, pln, czk, nzd, aed, eth, ape, cop, ron, thb, bgn, idr, dop, php, try, krw, twd, vnd, pkr, clp, uyu, ars, zar, dzd, tnd, mad, kes, kwd, jod, all, xcd, amd, bsd, bhd, bob, bam, khr, crc, xof, egp, etb, gmd, ghs, gtq, gyd, ils, jmd, mop, mga, mur, mdl, mnt, nad, ngn, mkd, omr, pyg, pen, qar, rwf, sar, rsd, lkr, tzs, ttd, uzs, rub, btc 
+​
+company
+objectrequired
+The Company this Membership belongs to.
+
+Hide child attributes
+
+​
+company.id
+stringrequired
+The ID (tag) of the company.
+
+Example:
+"biz_xxxxxxxxxxxxxx"
+
+​
+company.title
+stringrequired
+The title of the company.
+
+​
+plan
+objectrequired
+The Plan this Membership is for.
+
+Hide child attributes
+
+​
+plan.id
+stringrequired
+The internal ID of the plan.
+
+Example:
+"plan_xxxxxxxxxxxxx"
+
+​
+promo_code
+object | nullrequired
+The Promo Code that is currently applied to this Membership.
+
+Hide child attributes
+
+​
+promo_code.id
+stringrequired
+The ID of the promo.
+
+Example:
+"promo_xxxxxxxxxxxx"
+
+​
+product
+objectrequired
+The Product this Membership grants access to.
+
+Hide child attributes
+
+​
+product.id
+stringrequired
+The internal ID of the public product.
+
+Example:
+"prod_xxxxxxxxxxxxx"
+
+​
+product.title
+stringrequired
+The title of the product. Use for Whop 4.0.
+
+​
+license_key
+string | nullrequired
+The license key for this Membership. This is only present if the membership grants access to an instance of the Whop Software app.
+
+​
+metadata
+objectrequired
+A JSON object used to store software licensing information. Ex. HWID
+
+​
+payment_collection_paused
+booleanrequired
+Whether the membership's payments are currently paused.
+
+​
+page_info
+objectrequired
+Information to aid in pagination.
+
+Hide child attributes
+
+​
+page_info.end_cursor
+string | nullrequired
+When paginating forwards, the cursor to continue.
+
+​
+page_info.start_cursor
+string | nullrequired
+When paginating backwards, the cursor to continue.
+
+​
+page_info.has_next_page
+booleanrequired
+When paginating forwards, are there more items?
+
+​
+page_info.has_previous_page
+booleanrequired
+When paginating backwards, are there more items?

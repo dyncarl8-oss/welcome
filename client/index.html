@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <title>Whop App - Role-Based Access</title>
+    <meta name="description" content="Simple role-based Whop app with automatic admin and customer routing" />
+    <!-- Theme Bootstrap: Sync with Whop parent theme via postMessage -->
+    <script>
+      (function() {
+        // Listen for theme updates from Whop parent window
+        let themeInitialized = false;
+        
+        function applyTheme(isDark) {
+          if (isDark) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+          themeInitialized = true;
+        }
+        
+        // Listen for postMessage from Whop parent
+        window.addEventListener('message', function(event) {
+          // Validate message structure from Whop SDK
+          if (event.data && typeof event.data === 'object') {
+            // Handle theme messages from Whop
+            if (event.data.type === 'theme' && typeof event.data.theme === 'string') {
+              applyTheme(event.data.theme === 'dark');
+            }
+            // Also handle appearance updates
+            if (event.data.appearance === 'dark' || event.data.appearance === 'light') {
+              applyTheme(event.data.appearance === 'dark');
+            }
+          }
+        });
+        
+        // Request initial theme from parent after a short delay
+        setTimeout(function() {
+          if (!themeInitialized && window.parent !== window) {
+            try {
+              window.parent.postMessage({ type: 'requestTheme' }, '*');
+            } catch (e) {
+              // Ignore errors in standalone mode
+            }
+          }
+          
+          // Fallback to light mode if no response after 100ms
+          setTimeout(function() {
+            if (!themeInitialized) {
+              applyTheme(false); // Default to light mode
+            }
+          }, 100);
+        }, 10);
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

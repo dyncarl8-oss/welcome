@@ -1,0 +1,53 @@
+🎬 NEW MEMBER VISIT: AI Voice Studio (@bexodan, user_LPo6GjsTR3BSQ) - auto-generating welcome video
+✅ Created customer record for AI Voice Studio
+🎬 Starting video generation for AI Voice Studio
+6:59:59 AM [express] GET /api/customer/welcome-status 200 in 814ms :: {"hasWelcomeVideo":false,"vide…
+✅ Created video record for AI Voice Studio
+🔍 DEBUG: creator.heygenTalkingPhotoId = 0bf7856847dc4ee98941d97830547bc7
+🐟 Checking Fish Audio model e13ef5783695414ca7f13f3969b838f4...
+🐟 Getting Fish Audio model: e13ef5783695414ca7f13f3969b838f4
+🐟 Using Fish Audio TTS with trained model for AI Voice Studio
+🐟 Generating speech with Fish Audio model: e13ef5783695414ca7f13f3969b838f4
+🐟 Text: Hi AI Voice Studio! Welcome to our community. We're excited to have you here! Finally this is workin...
+🐟 Speech generated successfully
+Uploading audio to HeyGen: fish-audio-1761289204758.mp3, size: 162586 bytes, type: audio/mpeg
+HeyGen audio upload response status: 200
+HeyGen audio upload response body: {"code":100,"data":{"id":"bd64aadade574517ada2c335ddff819f","name":"bd64aadade574517ada2c335ddff819f","file_type":"audio","folder_id":"","meta":null,"created_ts":1761289206,"url":"https://resource2.heygen.ai/audio/bd64aadade574517ada2c335ddff819f/original","image_key":null},"msg":null,"message":null}
+🐟 Fish Audio uploaded to HeyGen: https://resource2.heygen.ai/audio/bd64aadade574517ada2c335ddff819f/original
+📤 Sending to HeyGen FREE API (talking photo + audio): {
+  "talking_photo_id": "0bf7856847dc4ee98941d97830547bc7",
+  "input_audio_url": "https://resource2.heygen.ai/audio/bd64aadade574517ada2c335ddff819f/original",
+  "test": true,
+  "title": "Welcome video for AI Voice Studio"
+}
+♻️ Reusing existing talking photo ID: 0bf7856847dc4ee98941d97830547bc7
+HeyGen API error: 404 - {"data":null,"error":{"code":"photar_not_found","message":"Talking photo 0bf7856847dc4ee98941d97830547bc7 not found"}}
+
+⚠️ Fish Audio TTS failed: Error: {"data":null,"error":{"code":"photar_not_found","message":"Talking photo 0bf7856847dc4ee98941d97830547bc7 not found"}}
+    at heygenRequest (/home/runner/workspace/server/lib/heygen-sdk.ts:31:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.generateTalkingPhotoWithAudio (/home/runner/workspace/server/lib/heygen-sdk.ts:455:22)
+    at async generateWelcomeVideo (/home/runner/workspace/server/routes.ts:90:26)
+Falling back to other audio methods...
+🎤 Using FREE API with audio file for AI Voice Studio
+📤 Sending to HeyGen FREE API (talking photo + audio): {
+  "talking_photo_id": "0bf7856847dc4ee98941d97830547bc7",
+  "input_audio_url": "https://resource2.heygen.ai/audio/42341b91b7a64ce89b792bd19b813714/original",
+  "test": true,
+  "title": "Welcome video for AI Voice Studio"
+}
+♻️ Reusing existing talking photo ID: 0bf7856847dc4ee98941d97830547bc7
+HeyGen API error: 404 - {"data":null,"error":{"code":"photar_not_found","message":"Talking photo 0bf7856847dc4ee98941d97830547bc7 not found"}}
+
+❌ Error generating video for AI Voice Studio: Error: {"data":null,"error":{"code":"photar_not_found","message":"Talking photo 0bf7856847dc4ee98941d97830547bc7 not found"}}
+    at heygenRequest (/home/runner/workspace/server/lib/heygen-sdk.ts:31:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.generateTalkingPhotoWithAudio (/home/runner/workspace/server/lib/heygen-sdk.ts:455:22)
+    at async generateWelcomeVideo (/home/runner/workspace/server/routes.ts:119:22)
+Error generating welcome video: Error: {"data":null,"error":{"code":"photar_not_found","message":"Talking photo 0bf7856847dc4ee98941d97830547bc7 not found"}}
+    at heygenRequest (/home/runner/workspace/server/lib/heygen-sdk.ts:31:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.generateTalkingPhotoWithAudio (/home/runner/workspace/server/lib/heygen-sdk.ts:455:22)
+    at async generateWelcomeVideo (/home/runner/workspace/server/routes.ts:119:22)
+📹 Polling: Found 1 video(s) being generated...
+⏳ Video 68fb23ef1e85f4c7678704ba is new (9s old), waiting for HeyGen video ID...

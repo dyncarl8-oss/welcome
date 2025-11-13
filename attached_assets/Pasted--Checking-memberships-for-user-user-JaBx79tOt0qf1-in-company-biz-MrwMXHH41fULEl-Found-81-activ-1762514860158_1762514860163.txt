@@ -1,0 +1,91 @@
+🔍 Checking memberships for user user_JaBx79tOt0qf1 in company biz_MrwMXHH41fULEl
+📊 Found 81 active/trialing memberships
+  - Membership mem_wjyRnRhsiiloIU: plan=plan_TGI2q8UUW4rd6, status=completed, cancel_at_period_end=false
+  - Membership mem_PMVFjfSFaraypG: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_7uxxpeHhnwxjFZ: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_nvX0BeBJ3ghcyj: plan=plan_aSwWAp0TI1O9x, status=canceled, cancel_at_period_end=false
+  - Membership mem_Vp0PjS2xPOoAz8: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_DHqOiT41JImEeo: plan=plan_TGI2q8UUW4rd6, status=completed, cancel_at_period_end=false
+  - Membership mem_9iXBo9spBvvcN9: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_jBGjo7bJe3CvpX: plan=plan_67wdE1qFD8Q6y, status=completed, cancel_at_period_end=false
+  - Membership mem_xqrhohQ2jBj0w1: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_1cHMQF9eNIahoz: plan=plan_aSwWAp0TI1O9x, status=canceled, cancel_at_period_end=false
+  - Membership mem_idRLveM9Qfpw3Z: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_M12VHeGzzWXELi: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_RjhNnscImDV6Jd: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_khC4RzB7OrPHqj: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_ewPZrC4ZmuX9KL: plan=plan_aSwWAp0TI1O9x, status=drafted, cancel_at_period_end=false
+  - Membership mem_RmK5RHUOTB6IqJ: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_LUe2YZ5P4P9a3y: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_CygYeRdaPnBiep: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_HsDZ8N4NoBrsc6: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_bb2uddeXSAcemx: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_iDdPQnAKKFfAtf: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_IwUvu1K4mRQQU2: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_glcmGQ4ACPPQfX: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_CFZp43hlbBfUTL: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_jMx7hevA7eF6vu: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_UkT0H9gxqnwqFo: plan=plan_IIz2jsyVOXRk9, status=completed, cancel_at_period_end=false
+  - Membership mem_esYD5LONU39qf1: plan=plan_IIz2jsyVOXRk9, status=completed, cancel_at_period_end=false
+  - Membership mem_tCQwc1DBj4uLgB: plan=plan_IIz2jsyVOXRk9, status=completed, cancel_at_period_end=false
+  - Membership mem_bbavaacPikt4hy: plan=plan_IIz2jsyVOXRk9, status=completed, cancel_at_period_end=false
+  - Membership mem_0jUkMEXshqoWLC: plan=plan_IIz2jsyVOXRk9, status=completed, cancel_at_period_end=false
+  - Membership mem_R8ouinBE6gNyTs: plan=plan_IIz2jsyVOXRk9, status=completed, cancel_at_period_end=false
+  - Membership mem_d8rh6lgIXyfQHy: plan=plan_IIz2jsyVOXRk9, status=completed, cancel_at_period_end=false
+  - Membership mem_xth8g7mpb9pbV5: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_ux6ZG94Y4ugnTO: plan=plan_IIz2jsyVOXRk9, status=completed, cancel_at_period_end=false
+  - Membership mem_bVpfRbuvuCiFOM: plan=plan_IIz2jsyVOXRk9, status=completed, cancel_at_period_end=false
+  - Membership mem_GHxIovruR4zgj5: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_JVSpHzWa5LvuZ5: plan=plan_IIz2jsyVOXRk9, status=completed, cancel_at_period_end=false
+  - Membership mem_1YDIlZRDCaK9fD: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_lUgcMp6PeUCghQ: plan=plan_IIz2jsyVOXRk9, status=completed, cancel_at_period_end=false
+  - Membership mem_wOhDcEKMRFrhCu: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_Nh3bGUGIK9F1IC: plan=plan_IIz2jsyVOXRk9, status=completed, cancel_at_period_end=false
+  - Membership mem_YSOmoFqtlqj1um: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_0AyYSKgWR64uCI: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_OCcA9oSWF2tim0: plan=plan_IIz2jsyVOXRk9, status=completed, cancel_at_period_end=false
+  - Membership mem_JscyOgYMQP0uoe: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_ooF5qPhv3op8XP: plan=plan_IIz2jsyVOXRk9, status=completed, cancel_at_period_end=false
+  - Membership mem_amVi99ARj0Wl0n: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_90docz0qe0sTrz: plan=plan_IIz2jsyVOXRk9, status=completed, cancel_at_period_end=false
+  - Membership mem_aMzoHkPHiCa9EQ: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_DpngfdE1jCbNfK: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_4RgtnyeKIGxTjI: plan=plan_IIz2jsyVOXRk9, status=completed, cancel_at_period_end=false
+  - Membership mem_TuqMKscGn5YmHV: plan=plan_6fkjy90v6wIE4, status=completed, cancel_at_period_end=false
+  - Membership mem_aFaEROvi8mr2xN: plan=plan_6fkjy90v6wIE4, status=completed, cancel_at_period_end=false
+  - Membership mem_rwMsB49PtQycFh: plan=plan_6fkjy90v6wIE4, status=completed, cancel_at_period_end=false
+  - Membership mem_j4eJLouVo1b3AI: plan=plan_6fkjy90v6wIE4, status=completed, cancel_at_period_end=false
+  - Membership mem_32DurPiaVYo8ud: plan=plan_6fkjy90v6wIE4, status=completed, cancel_at_period_end=false
+  - Membership mem_Q1v4E2kZNETxg5: plan=plan_6fkjy90v6wIE4, status=completed, cancel_at_period_end=false
+  - Membership mem_MNUsPWfNTXWzs3: plan=plan_aSwWAp0TI1O9x, status=canceled, cancel_at_period_end=false
+  - Membership mem_KovaSkscGvyq1w: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_SS7BKAeV0XY0hj: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_aQNcDhACXYMmxP: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_xxxg1ABP3onmkv: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_8CvFdP201PlUEd: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_PFjHPJTnibHGb6: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_EVnk5K7jzf6H8B: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_cLhLZwOE4XdzKP: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_COiG8KrpFTigl4: plan=plan_aSwWAp0TI1O9x, status=canceled, cancel_at_period_end=false
+  - Membership mem_MfFo5OdOGXC2jN: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_cDemqZ5QXdeEOn: plan=plan_IIz2jsyVOXRk9, status=completed, cancel_at_period_end=false
+  - Membership mem_DsBrf2Kg4WMAoH: plan=plan_IIz2jsyVOXRk9, status=completed, cancel_at_period_end=false
+  - Membership mem_h7LJAgWcaY4T5t: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_vxjyrgNf4HPzkk: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_Rgbej2FVcBfKgn: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_QvBONlCf3yQmyr: plan=plan_aSwWAp0TI1O9x, status=drafted, cancel_at_period_end=false
+  - Membership mem_93QWlHckrPCVX5: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_WWdTachpUCAFw5: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_XTXCRPJ7boicrN: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_35E92Z0IHYllfe: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_mNO36P0FePEL6Q: plan=plan_aSwWAp0TI1O9x, status=completed, cancel_at_period_end=false
+  - Membership mem_2FXrJr3PVoxswE: plan=plan_LjcBBl26IpAtD, status=drafted, cancel_at_period_end=false
+  - Membership mem_wCAIyboBJyMZo9: plan=plan_LjcBBl26IpAtD, status=active, cancel_at_period_end=true
+✅ Found our plan membership: mem_2FXrJr3PVoxswE
+   Status: drafted
+   Cancel at period end: false
+🎯 Cancellation check result: ACTIVE
+   Creator's current plan type: tier200
+✨ No downgrade needed (isCancelled=false, planType=tier200)
+11:25:50 AM [express] GET /api/admin/creator 200 in 3136ms :: {"_id":"690c2a286178e2e4c23ae140","whop…
+11:25:51 AM [express] GET /api/admin/voice-sample 200 in 571ms

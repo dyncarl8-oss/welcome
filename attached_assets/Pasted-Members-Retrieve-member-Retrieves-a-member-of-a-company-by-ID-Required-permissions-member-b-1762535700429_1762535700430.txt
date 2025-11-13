@@ -1,0 +1,157 @@
+Members
+Retrieve member
+Retrieves a member of a company by ID
+
+Required permissions:
+
+member:basic:read
+member:email:read
+member:phone:read
+GET
+/
+members
+/
+{id}
+
+Try it
+Authorizations
+​
+Authorization
+stringheaderrequired
+The app API key from an app from the /dashboard/developer page
+
+Path Parameters
+​
+id
+stringrequired
+The ID of the member
+
+Response
+
+200
+
+application/json
+A successful response
+
+An object representing a connection between a creator and a user/company_buyer. This type should only be made visible to the user/company_buyer who is a part of the connection.
+
+​
+id
+stringrequired
+The ID of the member
+
+​
+created_at
+string<date-time>required
+When the member was created
+
+Example:
+"2023-12-01T05:00:00.401Z"
+
+​
+updated_at
+string<date-time>required
+The timestamp of when this member was last updated
+
+Example:
+"2023-12-01T05:00:00.401Z"
+
+​
+joined_at
+string<date-time>required
+When the member joined the company
+
+Example:
+"2023-12-01T05:00:00.401Z"
+
+​
+access_level
+enum<string>required
+The access level of the product member. If its admin, the member is an authorized user of the company. If its customer, the member has a valid membership to any product on the company. If its no_access, the member does not have access to the product.
+
+Available options: no_access, admin, customer 
+​
+status
+enum<string>required
+The status of the member
+
+Available options: drafted, joined, left 
+​
+most_recent_action
+enum<string> | nullrequired
+The most recent action the member has taken.
+The different most recent actions a member can have.
+
+Available options: canceling, churned, finished_split_pay, paused, paid_subscriber, paid_once, expiring, joined, drafted, left, trialing, pending_entry, renewing, past_due 
+​
+most_recent_action_at
+string<date-time> | nullrequired
+The time for the most recent action, if applicable.
+
+Example:
+"2023-12-01T05:00:00.401Z"
+
+​
+user
+object | nullrequired
+The user for this member, if any.
+
+Hide child attributes
+
+​
+user.id
+stringrequired
+The internal ID of the user account.
+
+​
+user.email
+string | nullrequired
+The digital mailing address of the user.
+
+​
+user.name
+string | nullrequired
+The user's full name.
+
+​
+user.username
+stringrequired
+The whop username.
+
+​
+phone
+string | nullrequired
+The phone number for the member, if available.
+
+​
+usd_total_spent
+numberrequired
+How much money this customer has spent on the company's products and plans
+
+Example:
+6.9
+
+​
+company
+objectrequired
+The company for the member.
+
+Hide child attributes
+
+​
+company.id
+stringrequired
+The ID of the company
+
+Example:
+"biz_xxxxxxxxxxxxxx"
+
+​
+company.title
+stringrequired
+The written name of the company.
+
+​
+company.route
+stringrequired
+The slug/route of the company on the Whop site.

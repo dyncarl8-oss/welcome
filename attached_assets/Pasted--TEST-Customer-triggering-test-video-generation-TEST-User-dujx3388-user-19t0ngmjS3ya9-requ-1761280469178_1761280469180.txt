@@ -1,0 +1,28 @@
+🧪 TEST: Customer triggering test video generation
+🧪 TEST: User dujx3388 (user_19t0ngmjS3ya9) requesting test video
+🧪 TEST: Using creator user_6SjB1Wo0chseh for video generation
+🧪 TEST: Found existing customer record for dujx3388
+🧪 TEST: Personalized script: Hi dujx3388! Welcome to our community. We're excited to have you here!
+🧪 TEST: Created video record 68fb01a488f6d8e15efe4abc
+🎥 Calling HeyGen Avatar IV API...
+🧪 TEST: Using FREE API with audio file
+📤 Sending to HeyGen FREE API (talking photo + audio): {
+  "avatar_image_url": "https://4b85ba6b-4d21-4d8c-979f-4c1a0d11516c-00-3e4k7ghl44vds.sisko.replit.dev/uploads/avatars/avatar-68f676e569fe6de74e0bd137-1761280402365.png",
+  "input_audio_url": "https://resource2.heygen.ai/audio/e1c78f7de9b74e36820ac8a04da65cac/original",
+  "test": true,
+  "title": "Welcome video for dujx3388"
+}
+📁 Reading avatar from filesystem: /home/runner/workspace/uploads/avatars/avatar-68f676e569fe6de74e0bd137-1761280402365.png
+✅ Read 2054826 bytes from filesystem, type: image/png
+Fetched image buffer size: 2054826 bytes, type: image/png
+Uploading to HeyGen: avatar.jpg, size: 2054826 bytes, type: image/png
+HeyGen response status: 200
+HeyGen response body: {"code":100,"data":{"id":"1797787f92a947c5924b288c03437a11","name":"1797787f92a947c5924b288c03437a11","file_type":"image","folder_id":"","meta":null,"created_ts":1761280423,"url":"https://resource2.heygen.ai/image/1797787f92a947c5924b288c03437a11/original","image_key":"image/1797787f92a947c5924b288c03437a11/original"},"msg":null,"message":null}
+HeyGen API error: 404 - {"data":null,"error":{"code":"photar_not_found","message":"Talking photo image/1797787f92a947c5924b288c03437a11/original not found"}}
+
+❌ Error triggering test video: Error: {"data":null,"error":{"code":"photar_not_found","message":"Talking photo image/1797787f92a947c5924b288c03437a11/original not found"}}
+    at heygenRequest (/home/runner/workspace/server/lib/heygen-sdk.ts:31:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.generateTalkingPhotoWithAudio (/home/runner/workspace/server/lib/heygen-sdk.ts:383:22)
+    at async <anonymous> (/home/runner/workspace/server/routes.ts:1983:24)
+4:33:44 AM [express] POST /api/customer/trigger-test-video 500 in 4588ms :: {"error":"{\"data\":null…

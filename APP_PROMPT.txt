@@ -1,0 +1,60 @@
+Build a Whop app called AutoWelcome AI that automatically sends personalized video messages to new users when they join a creator’s Whop community.
+
+🧩 Core Concept
+
+When a customer joins a Whop experience, the app should instantly trigger an API to generate a custom welcome video using HeyGen. The video is made using the creator’s AI avatar and personalized with the new user’s name and other details. Once generated, the app automatically sends the video to the customer through a Whop DM and shows a short welcome message on their screen telling them to check their DMs.
+
+👑 Admin / Creator Side
+
+Creators (admins) have a secure Admin Dashboard inside the app where they can:
+
+Authenticate with their Whop account
+
+Upload their photo with background (used to generate their AI avatar for HeyGen)
+
+Customize their video message script with dynamic placeholders like {name} or {plan}
+
+Choose or create templates for their videos
+
+Preview sample videos
+
+View all customers who joined and see which videos were sent, delivered, or viewed
+
+See the full conversation history between their Whop account and each user
+
+Re-send or edit a welcome video anytime
+
+Access analytics such as send rate, view count, and engagement
+
+👤 Customer Side
+
+When a customer first joins or visits the Whop:
+
+The app automatically triggers the backend to generate a personalized HeyGen video using the creator’s avatar and message
+
+The user instantly receives a Whop DM containing their custom video
+
+On their screen, they see a friendly message:
+
+“Welcome! We just sent you a personal video message — check your DMs 🎥”
+
+Each customer’s data (name, plan, join date) is passed to the template to personalize the video
+
+⚙️ System Behavior
+
+Authenticate all users via Whop’s API and detect their access level (admin or customer)
+
+Only admins can access the admin dashboard
+
+Automatically trigger HeyGen’s video generation when a new customer joins
+
+Receive HeyGen’s webhook once the video is ready and deliver it through Whop DM
+
+Store video metadata (user, template, timestamp, view count) for analytics
+
+Maintain a simple, intuitive dashboard UI for both admin and customer roles
+
+🚀 Goal
+
+Make it completely automated — the creator sets up their avatar and script once, and every new customer who joins their Whop receives a unique, personalized welcome video automatically.
+This boosts engagement, retention, and lifetime value by giving every new user a direct, personal connection with the creator.

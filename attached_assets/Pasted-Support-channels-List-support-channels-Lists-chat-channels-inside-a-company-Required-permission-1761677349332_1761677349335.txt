@@ -1,0 +1,248 @@
+Support channels
+List support channels
+Lists chat channels inside a company
+
+Required permissions:
+
+support_chat:read
+GET
+/
+support_channels
+
+Try it
+Authorizations
+​
+Authorization
+stringheaderrequired
+The app API key from an app from the /dashboard/developer page
+
+Query Parameters
+​
+after
+string | null
+Returns the elements in the list that come after the specified cursor.
+
+​
+before
+string | null
+Returns the elements in the list that come before the specified cursor.
+
+​
+first
+integer | null
+Returns the first n elements from the list.
+
+Example:
+42
+
+​
+last
+integer | null
+Returns the last n elements from the list.
+
+Example:
+42
+
+​
+company_id
+stringrequired
+The ID of the company to list chat channels for
+
+Example:
+"biz_xxxxxxxxxxxxxx"
+
+​
+open
+boolean | null
+Filter for tickets where customer sent the last message (needs response) AND not resolved. Set to true to only return open channels, false to only return resolved channels.
+
+​
+direction
+enum<string> | null
+The direction to sort the channels by
+The direction of the sort.
+
+Available options: asc, desc
+​
+order
+enum<string> | null
+The field to order the channels by
+Sort options for message channels
+
+Available options: created_at, last_post_sent_at
+Response
+
+200
+
+application/json
+A successful response
+
+The connection type for DmsFeed.
+
+​
+data
+object[]required
+A list of nodes.
+
+Show child attributes
+
+​
+page_info
+objectrequired
+Information to aid in pagination.
+
+Support channels
+Create support channel
+Create a new support channel for a user in a company. If one already exists, it will return the existing one.
+
+Required permissions:
+
+support_chat:create
+POST
+/
+support_channels
+
+Try it
+Authorizations
+​
+Authorization
+stringheaderrequired
+The app API key from an app from the /dashboard/developer page
+
+Body
+application/json
+Parameters for CreateSupportChatForUser
+
+​
+company_id
+stringrequired
+The ID of the company to create the support chat in
+
+Example:
+"biz_xxxxxxxxxxxxxx"
+
+​
+user_id
+stringrequired
+The ID of the user to create the support chat for
+
+Example:
+"user_xxxxxxxxxxxxx"
+
+Response
+
+200
+
+application/json
+A successful response
+
+Represents a DM channel
+
+​
+id
+stringrequired
+The unique identifier for the entity
+
+​
+company_id
+string | nullrequired
+The bot ID if this is a support chat
+
+​
+custom_name
+string | nullrequired
+The custom name of the DM channel, if any
+
+​
+customer_user
+object | nullrequired
+The customer user if this is a support chat
+
+Show child attributes
+
+​
+resolved_at
+string<date-time> | nullrequired
+When the support ticket was resolved (null if unresolved)
+
+Example:
+"2023-12-01T05:00:00.401Z"
+
+​
+last_message_at
+string<date-time> | nullrequired
+When the last message was sent
+
+Example:
+"2023-12-01T05:00:00.401Z"
+
+Support channels
+Retrieve support channel
+Retrieves a support channel
+
+Required permissions:
+
+support_chat:read
+GET
+/
+support_channels
+/
+{id}
+
+Try it
+Authorizations
+​
+Authorization
+stringheaderrequired
+The app API key from an app from the /dashboard/developer page
+
+Path Parameters
+​
+id
+stringrequired
+Response
+
+200
+
+application/json
+A successful response
+
+Represents a DM channel
+
+​
+id
+stringrequired
+The unique identifier for the entity
+
+​
+company_id
+string | nullrequired
+The bot ID if this is a support chat
+
+​
+custom_name
+string | nullrequired
+The custom name of the DM channel, if any
+
+​
+customer_user
+object | nullrequired
+The customer user if this is a support chat
+
+Show child attributes
+
+​
+resolved_at
+string<date-time> | nullrequired
+When the support ticket was resolved (null if unresolved)
+
+Example:
+"2023-12-01T05:00:00.401Z"
+
+​
+last_message_at
+string<date-time> | nullrequired
+When the last message was sent
+
+Example:
+"2023-12-01T05:00:00.401Z"
