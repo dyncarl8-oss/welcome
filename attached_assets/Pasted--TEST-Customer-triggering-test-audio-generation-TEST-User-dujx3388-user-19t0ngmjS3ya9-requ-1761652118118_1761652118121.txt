@@ -1,0 +1,25 @@
+🧪 TEST: Customer triggering test audio generation
+🧪 TEST: User dujx3388 (user_19t0ngmjS3ya9) requesting test audio
+🧪 TEST: Using creator user_6SjB1Wo0chseh for audio generation
+🧪 TEST: Found existing customer record for dujx3388
+🧪 TEST: Personalized script: Hey dujx3388! This is Prince from Test company, Welcome to our community dujx3388! . We're excited to have you here! Finally this is working! I promise i will crushed that fucking kartik guy!
+🎵 Starting audio generation for dujx3388
+✅ Created audio message record for dujx3388
+🐟 Checking Fish Audio model 51cee235ee474edd850300b8c38d3f36...
+🐟 Getting Fish Audio model: 51cee235ee474edd850300b8c38d3f36
+🐟 Generating speech with Fish Audio for dujx3388
+🐟 Generating speech with Fish Audio model: 51cee235ee474edd850300b8c38d3f36
+🐟 Text: Hey dujx3388! This is Prince from Test company, Welcome to our community dujx3388! . We're excited t...
+🐟 Speech generated successfully
+☁️ Uploading audio to Clyp.it...
+❌ Clyp.it upload failed: 400 Bad Request
+   Response: {"Successful":true,"PlaylistId":"ukdhyq0y","AudioFileId":"fonz3lf3","Title":"Invalid License Detected","Description":"Hello and thank you for accessing the Clyp API. We have detected that you are attempting to upload to our service without the proper license.\n\nIf you are the developer of the application, please email sales@clyp.it to purchase the proper monthly plan. Otherwise, please contact the makers of this software and encourage them to purchase the proper licensing.\n\nThank you and have a wonderful day!","Duration":34.873,"Url":"https://clyp.it/fonz3lf3","Mp3Url":"https://audio.clyp.it/fonz3lf3.mp3?Expires=1761666405&Signature=vi3I5uPdH1MSG2hYGRxztLe~td0BxLC6vjtN-YP15QLZqEpAzi4teCi49DTsiJn5oc6tHPJeMUx0dh5OccNOtwCkHI1tEUgkjYCSOZF~G3oBrpMeubVH-4~g4-XFXb5qaM1gy5MqTYdexnClz8ziF-WFWSQ6rbvXfQv3Yz6eqXc_&Key-Pair-Id=APKAJ4AMQB3XYIRCZ5PA","SecureMp3Url":"https://audio.clyp.it/fonz3lf3.mp3?Expires=1761666405&Signature=vi3I5uPdH1MSG2hYGRxztLe~td0BxLC6vjtN-YP15QLZqEpAzi4teCi49DTsiJn5oc6tHPJeMUx0dh5OccNOtwCkHI1tEUgkjYCSOZF~G3oBrpMeubVH-4~g4-XFXb5qaM1gy5MqTYdexnClz8ziF-WFWSQ6rbvXfQv3Yz6eqXc_&Key-Pair-Id=APKAJ4AMQB3XYIRCZ5PA","OggUrl":"https://audio.clyp.it/fonz3lf3.ogg?Expires=1761666405&Signature=bS6fn4YdN6dFNplPnsfFQlct7BUX5sDtFqr3zeJcXHhCrUzZa3NeN~VoOnGlI5cWahauTaPFG4NCzDsf1Q7yYMIAx~XQ8T4KdsyfvWaIrNlm-aBSJaOH9D5sp0zdgL4rbeCLmTCcYcs0PxR7SJG6xwZDJEgZ6bOc3H5NrpRI~gk_&Key-Pair-Id=APKAJ4AMQB3XYIRCZ5PA","SecureOggUrl":"https://audio.clyp.it/fonz3lf3.ogg?Expires=1761666405&Signature=bS6fn4YdN6dFNplPnsfFQlct7BUX5sDtFqr3zeJcXHhCrUzZa3NeN~VoOnGlI5cWahauTaPFG4NCzDsf1Q7yYMIAx~XQ8T4KdsyfvWaIrNlm-aBSJaOH9D5sp0zdgL4rbeCLmTCcYcs0PxR7SJG6xwZDJEgZ6bOc3H5NrpRI~gk_&Key-Pair-Id=APKAJ4AMQB3XYIRCZ5PA","DateCreated":"2017-02-12T21:19:45.043Z"}
+❌ Error generating audio for dujx3388: Error: Clyp.it upload failed: Bad Request
+    at generateWelcomeAudio (/home/runner/workspace/server/routes.ts:117:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async <anonymous> (/home/runner/workspace/server/routes.ts:1391:43)
+❌ Error triggering test audio: Error: Clyp.it upload failed: Bad Request
+    at generateWelcomeAudio (/home/runner/workspace/server/routes.ts:117:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async <anonymous> (/home/runner/workspace/server/routes.ts:1391:43)
+11:46:45 AM [express] POST /api/customer/trigger-test-audio 500 in 7450ms :: {"error":"Clyp.it upload…

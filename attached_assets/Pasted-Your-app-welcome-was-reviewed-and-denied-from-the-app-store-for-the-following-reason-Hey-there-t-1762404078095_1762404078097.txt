@@ -1,0 +1,53 @@
+Your app, welcome, was reviewed and denied from the app store for the following reason: Hey there, thank you for your submission to the Whop App Store! We weren’t able to approve your app at this time due to several UI / UX and data handling issues identified during testing.
+
+
+
+The app is currently handled on a per-user basis instead of per Whop. This causes data crossover between communities. For example, if an owner creates an AI voice and is also an admin in another Whop, viewing that Whop’s stats shows data tied to them instead of the community. Similarly, if a member belongs to multiple Whops from one owner, they do not receive unique messages per Whop, which is confusing since different Whops may belong to different companies or contexts. At minimum, the app should check if the user is the current owner of the Whop before loading or associating any data.
+
+
+
+Agent users are being counted toward total users. You can fix this by filtering them out using: https://api.whop.com/api/v1/members?access_level=customer or by listing authorized users and removing them, which should be done regardless since team members are not customers.
+
+
+
+The app requests several permissions that aren’t needed, including:
+
+- developer:manage_webhook (use webhook:receive_payments if required, but this doesn’t seem necessary here due to the fact members have to enter the app first to receive a welcome message)
+
+
+
+- support_chat:create, support_chat:read
+
+
+
+- member:basic:export, member:manage, member:stats:export, member:stats:read
+
+
+
+- chat:read, member:phone:read, member:email:read (these aren’t currently tied to any visible feature)
+
+
+
+Please remove all unnecessary permissions before resubmitting.
+
+
+
+Dark and light mode are being handled manually via a button rather than using Whop’s theme system. You can apply native styling instead, for example: className="bg-blue dark:bg-red"
+
+
+
+We also recommend some other UI polish like removing the top banner that reads: Whop App  
+
+admin  biz_id, it isn’t relevant to end users and should be removed or replaced, which would make the app feel cleaner.
+
+
+
+Lastly, the generated voice output didn’t really seem to resemble the user very closely. We recommend fine-tuning the model to achieve a more accurate result.
+
+
+
+Once these issues are resolved and the app behaves correctly on a per-Whop basis, feel free to resubmit for review. If you have any questions or need guidance before resubmitting, you can connect with our developers community here: https://whop.com/developers/.
+
+
+
+Revise and resubmit your app to be considered again here: https://whop.com/welcome-7a-45e7

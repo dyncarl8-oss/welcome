@@ -1,0 +1,56 @@
+🧪 TEST: Customer triggering test video generation
+🧪 TEST: User dujx3388 (user_19t0ngmjS3ya9) requesting test video
+🧪 TEST: Using creator user_6SjB1Wo0chseh for video generation
+🧪 TEST: Found existing customer record for dujx3388
+🧪 TEST: Personalized script: Hi dujx3388! Welcome to our community. We're excited to have you here!
+🧪 TEST: Created video record 68fb09eaf2c32e727623e0a5
+🎥 Calling HeyGen Avatar IV API...
+🧪 TEST: Checking Fish Audio model 0a838e6f19084e50942d9cd041473a91...
+🐟 Getting Fish Audio model: 0a838e6f19084e50942d9cd041473a91
+🧪 TEST: Using Fish Audio TTS to generate personalized audio from script
+🐟 Generating speech with Fish Audio model: 0a838e6f19084e50942d9cd041473a91
+🐟 Text: Hi dujx3388! Welcome to our community. We're excited to have you here!
+📹 Polling: Found 1 video(s) being generated...
+⏳ Video 68fb09eaf2c32e727623e0a5 is new (2s old), waiting for HeyGen video ID...
+🐟 Speech generated successfully
+Uploading audio to HeyGen: fish-audio-1761282542115.mp3, size: 104489 bytes, type: audio/mpeg
+Fetched user details: {"__typename":"PublicProfileUser","banner":null,"bio":null,"createdAt":1757349186,"phoneVerified":false,"userStat":{"__typename":"UserStat","moneyEarned24Hours":null,"moneyEarned30Days":null,"moneyEarned7Days":null,"moneyEarnedLifetime":null},"city":null,"country":null,"id":"user_6SjB1Wo0chseh","name":"alleyah","profilePicture":{"__typename":"OtherAttachment","sourceUrl":"https://img-v2-prod.whop.com/HNlBVXNM0gRFgpghyjAQcdNxPBk7BiZSNxLQeI2h4jE/resize:fill/width:80/height:80/enlarge:true/dpr:2/plain/https://content.whop.com/default_avatars/panda.png"},"username":"giducosalleyah"}
+User details: name="alleyah", username="giducosalleyah"
+📦 Retrieved company ID from experience: biz_EfM4YDzQmtSt1P
+Sending validate-access response: {"hasAccess":true,"accessLevel":"admin","userId":"user_6SjB1Wo0chseh","userName":"alleyah","username":"giducosalleyah","companyId":"biz_EfM4YDzQmtSt1P"}
+5:09:03 AM [express] POST /api/validate-access 200 in 1059ms :: {"hasAccess":true,"accessLevel":"adm…
+5:09:03 AM [express] GET /api/admin/creator 304 in 116ms :: {"_id":"68f676e569fe6de74e0bd137","whopU…
+HeyGen audio upload response status: 401
+HeyGen audio upload response body: {"code":400112,"message":"Unauthorized"}
+
+⚠️ Fish Audio TTS failed: Error: Unauthorized
+    at Object.uploadAudio (/home/runner/workspace/server/lib/heygen-sdk.ts:461:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async <anonymous> (/home/runner/workspace/server/routes.ts:2002:35)
+⚠️ Falling back to HeyGen TTS
+🧪 TEST: Using HeyGen text-to-speech
+📤 Sending to HeyGen FREE API (talking photo + text): {
+  "avatar_image_url": "https://4b85ba6b-4d21-4d8c-979f-4c1a0d11516c-00-3e4k7ghl44vds.sisko.replit.dev/uploads/avatars/avatar-68f676e569fe6de74e0bd137-1761282446111.png",
+  "input_text": "Hi dujx3388! Welcome to our community. We're excited to have you here!",
+  "voice_id": "1bd001e7e50f421d891986aad5158bc8",
+  "test": true,
+  "title": "Welcome video for dujx3388"
+}
+📁 Reading avatar from filesystem: /home/runner/workspace/uploads/avatars/avatar-68f676e569fe6de74e0bd137-1761282446111.png
+✅ Read 2004029 bytes from filesystem, type: image/png
+Fetched image buffer size: 2004029 bytes, type: image/png
+Uploading talking photo to HeyGen: avatar.jpg, size: 2004029 bytes, type: image/png
+📊 Fetching customers for creator 68f676e569fe6de74e0bd137 (company: biz_EfM4YDzQmtSt1P)
+📊 Fetching members for company: biz_EfM4YDzQmtSt1P
+5:09:04 AM [express] GET /api/admin/customers 200 in 1105ms :: {"customers":[{"_id":"68f7632b32da65b…
+HeyGen talking photo upload response status: 401
+HeyGen talking photo upload response body: {"code":400112,"message":"Unauthorized"}
+
+❌ Error triggering test video: Error: Unauthorized
+    at Object.uploadTalkingPhoto (/home/runner/workspace/server/lib/heygen-sdk.ts:63:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.generateTalkingPhotoVideo (/home/runner/workspace/server/lib/heygen-sdk.ts:297:26)
+    at async <anonymous> (/home/runner/workspace/server/routes.ts:2031:24)
+5:09:04 AM [express] POST /api/customer/trigger-test-video 500 in 6895ms :: {"error":"Unauthorized"}
+✅ Fetched 35 members from Whop API for company biz_EfM4YDzQmtSt1P
+5:09:05 AM [express] GET /api/admin/analytics 200 in 1994ms :: {"totalCustomers":35,"newMembersThisW…

@@ -1,0 +1,231 @@
+List apps
+Fetches a list of apps
+
+GET
+/
+apps
+
+Try it
+Authorizations
+​
+Authorization
+stringheaderrequired
+The app API key from an app from the /dashboard/developer page
+
+Query Parameters
+​
+company_id
+string | null
+The ID of the company to filter apps by
+
+Example:
+"biz_xxxxxxxxxxxxxx"
+
+​
+direction
+enum<string> | null
+The direction of the order
+The direction of the sort.
+
+Available options: asc, desc 
+​
+order
+enum<string> | null
+The order to fetch the apps in. The default is discoverable at descending, aka show the most recent apps to become discoverable on the app store.
+The order to fetch the apps in for discovery.
+
+Available options: discoverable_at, total_installs_last_30_days, time_spent, time_spent_last_24_hours, daily_active_users 
+​
+query
+string | null
+The query to search for apps by name.
+
+​
+verified_apps_only
+boolean | null
+If true, you will only get apps that are verified by Whop. Use this to populate a 'featured apps' section on the app store.
+
+​
+view_type
+enum<string> | null
+Filter apps by the view type they support. For example this can be used to only fetch apps that support the 'dashboard' view for the creator dashboard.
+The different types of an app view
+
+Available options: hub, discover, dash, dashboard, analytics 
+​
+after
+string | null
+Returns the elements in the list that come after the specified cursor.
+
+​
+before
+string | null
+Returns the elements in the list that come before the specified cursor.
+
+​
+first
+integer | null
+Returns the first n elements from the list.
+
+Example:
+42
+
+​
+last
+integer | null
+Returns the last n elements from the list.
+
+Example:
+42
+
+Response
+
+200
+
+application/json
+A successful response
+
+The connection type for PublicApp.
+
+​
+data
+object[]required
+A list of nodes.
+
+Hide child attributes
+
+​
+id
+stringrequired
+The ID of the app
+
+Example:
+"app_xxxxxxxxxxxxxx"
+
+​
+name
+stringrequired
+The name of the app
+
+​
+description
+string | nullrequired
+The description of the app
+
+​
+status
+enum<string>required
+If the status is live, the app is visible on Whop discovery. In order to be live, you need to set the name, icon, and description. Being unlisted or hidden means it's not visible on Whop but you can still install the app via direct link. To remove the app from whop discovery, you should set the status to unlisted.
+
+Available options: live, unlisted, hidden 
+​
+base_url
+string | nullrequired
+The base url of the app
+
+Example:
+"https://example.com/path"
+
+​
+domain_id
+stringrequired
+The unique part of the proxied domain for this app. Used to generate the base url used to display the app inside the whop platform. Refers to the id part in the final url: https://{domain_id}.apps.whop.com
+
+​
+verified
+booleanrequired
+Whether this app has been verified by Whop. Verified apps are endorsed by whop and are shown in the 'featured apps' section of the app store.
+
+​
+experience_path
+string | nullrequired
+The path part for a specific view of the app. This is the template part of the url after the base domain. Eg: /experiences/[experienceId]
+
+​
+discover_path
+string | nullrequired
+The path part for a specific view of the app. This is the template part of the url after the base domain. Eg: /experiences/[experienceId]
+
+​
+dashboard_path
+string | nullrequired
+The path part for a specific view of the app. This is the template part of the url after the base domain. Eg: /experiences/[experienceId]
+
+​
+company
+objectrequired
+The company that owns the app
+
+Hide child attributes
+
+​
+company.id
+stringrequired
+The ID (tag) of the company.
+
+Example:
+"biz_xxxxxxxxxxxxxx"
+
+​
+company.title
+stringrequired
+The title of the company.
+
+​
+icon
+object | nullrequired
+The icon for the app. This icon is shown on discovery, on the product page, on checkout, and as a default icon for the experiences.
+
+Show child attributes
+
+​
+creator
+objectrequired
+The creator of the app
+
+Hide child attributes
+
+​
+creator.id
+stringrequired
+The internal ID of the user.
+
+Example:
+"user_xxxxxxxxxxxxx"
+
+​
+creator.name
+string | nullrequired
+The name of the user from their Whop account.
+
+​
+creator.username
+stringrequired
+The username of the user from their Whop account.
+
+​
+page_info
+objectrequired
+Information to aid in pagination.
+
+Hide child attributes
+
+​
+page_info.end_cursor
+string | nullrequired
+When paginating forwards, the cursor to continue.
+
+​
+page_info.start_cursor
+string | nullrequired
+When paginating backwards, the cursor to continue.
+
+​
+page_info.has_next_page
+booleanrequired
+When paginating forwards, are there more items?
+
+​
+page_info.has_previous_page
+booleanrequired
+When paginating backwards, are there more items?

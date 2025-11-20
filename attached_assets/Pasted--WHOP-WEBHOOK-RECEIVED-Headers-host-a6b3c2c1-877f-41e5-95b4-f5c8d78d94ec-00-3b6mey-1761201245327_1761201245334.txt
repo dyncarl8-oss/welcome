@@ -1,0 +1,60 @@
+=== WHOP WEBHOOK RECEIVED ===
+Headers: {
+  "host": "a6b3c2c1-877f-41e5-95b4-f5c8d78d94ec-00-3b6meyf423vb8.riker.replit.dev",
+  "user-agent": "Typhoeus - https://github.com/typhoeus/typhoeus",
+  "content-length": "671",
+  "accept": "*/*",
+  "accept-encoding": "gzip",
+  "content-type": "application/json",
+  "newrelic": "eyJ2IjpbMCwxXSwiZCI6eyJ0eSI6IkFwcCIsImFjIjoiNDIwMDUxNyIsImFwIjoiMTAzNjk1MzQzNCIsInR4IjoiNDk2MTdkYTllNWNjNDk1OSIsInRyIjoiNDMyNDU5Zjc0M2IyZTdlOTAwNzU4ZmExYmExNzA4MjkiLCJzYSI6ZmFsc2UsInByIjowLjU4MzUxNywidGkiOjE3NjEyMDExMzA4NDgsImlkIjoiNzFhNjJjMDhhODEwZjM4OSJ9fQ==",
+  "traceparent": "00-432459f743b2e7e900758fa1ba170829-71a62c08a810f389-00",
+  "tracestate": "4200517@nr=0-0-4200517-1036953434-71a62c08a810f389-49617da9e5cc4959-0-0.583517-1761201130848",
+  "x-forwarded-for": "44.223.185.190, 10.81.7.22",
+  "x-forwarded-proto": "https",
+  "x-replit-user-bio": "",
+  "x-replit-user-id": "",
+  "x-replit-user-name": "",
+  "x-replit-user-profile-image": "",
+  "x-replit-user-roles": "",
+  "x-replit-user-teams": "",
+  "x-replit-user-url": "",
+  "x-whop-signature": "t=1761201130,v1=cc06b5ec21ab50b369e5a7a06a883067129504a5cb1f1179127ad186fc9a266f"
+}
+Body: {
+  "action": "membership.went_valid",
+  "api_version": "v5",
+  "data": {
+    "id": "mem_5l6nvhob7ALjRT",
+    "product_id": "pass_m11FQfj0mJV3p",
+    "user_id": "user_q61ixyl8cVGff",
+    "plan_id": "plan_nJUM2MyD9lX0Q",
+    "page_id": "biz_HXJbuEEjEr8YMv",
+    "created_at": 1675816599,
+    "expires_at": null,
+    "renewal_period_start": null,
+    "renewal_period_end": null,
+    "quantity": 1,
+    "status": "completed",
+    "valid": true,
+    "cancel_at_period_end": false,
+    "license_key": "U-A09280-647203B0-2C0A9EW",
+    "metadata": {},
+    "checkout_id": null,
+    "affiliate_username": null,
+    "manage_url": "https://whop.com/@me/settings/orders/",
+    "company_buyer_id": null,
+    "marketplace": false,
+    "acquisition_data": null,
+    "custom_field_responses": [],
+    "entry_custom_field_responses": []
+  }
+}
+✅ Whop webhook signature verified successfully
+📥 Received Whop webhook action: membership.went_valid
+📋 Webhook data - status_reason: not provided, status: completed
+📦 Membership data - Company ID: not found, Product ID: pass_m11FQfj0mJV3p
+Webhook - Fetched user details: {"__typename":"PublicProfileUser","banner":null,"bio":null,"createdAt":1641860509,"phoneVerified":false,"userStat":{"__typename":"UserStat","moneyEarned24Hours":8.57,"moneyEarned30Days":113.46,"moneyEarned7Days":28.44,"moneyEarnedLifetime":403.34},"city":null,"country":null,"id":"user_q61ixyl8cVGff","name":"Whop","profilePicture":{"__typename":"ImageAttachment","sourceUrl":"https://ui-avatars.com/api/?name=Whop&background=535961&color=fff&format=png"},"username":"whopinc"}
+Fetched user details from Whop: Whop (@whopinc)
+New member joined: Whop (@whopinc, user_q61ixyl8cVGff)
+⚠️ No company ID in webhook - cannot match to creator
+6:32:11 AM [express] POST /api/whop/webhook 200 in 134ms :: {"success":true,"message":"No company ID…

@@ -1,0 +1,45 @@
+🔍 Checking setup completion for company biz_MrwMXHH41fULEl:
+   - Has fishAudioModelId: true (ecf273ccde9d47c580a72905edba30e0)
+   - Has messageTemplate: true (length: 610)
+   - messageTemplate: "Hey {name}! Welcome!
+
+I'm pumped you're here! You're about to see how regular people with zero coding experience are building and launching their own apps on Whop—some making their first sales within 24 hours.
+
+I built this course because I got tired of seeing "beginner-friendly" guides that skip the basics or assume you already know stuff. This literally starts from scratch—creating accounts, clicking the right buttons, everything.
+
+Take a look around and check out the course overview. If you're ready to finally launch your first app and start earning, I'll see you on the inside. Let's make it happen! "
+   - isSetupComplete: true
+✅ Settings saved. Setup complete: true
+9:02:46 AM [express] POST /api/admin/save-settings 200 in 1214ms :: {}
+🔍 Checking memberships for user user_JaBx79tOt0qf1 in company biz_MrwMXHH41fULEl
+📊 Found 11 total memberships for this user
+🎯 Filtered to 0 memberships for our plans: plan_28isMowaQAjxK, plan_ALL5Dj5k7Ps54
+❌ No membership found for our plans: plan_28isMowaQAjxK, plan_ALL5Dj5k7Ps54
+🎯 Cancellation check result: CANCELLED
+   Creator's current plan type: free
+✨ No changes needed (isCancelled=true, planType=free)
+9:02:48 AM [express] GET /api/admin/creator 200 in 1609ms :: {"_id":"690f83e380cd8043316236ff","whop…
+📦 Retrieved company ID for welcome status: biz_MrwMXHH41fULEl
+🎯 Using creator for company biz_MrwMXHH41fULEl: 690f83e380cd8043316236ff
+9:02:58 AM [express] GET /api/customer/welcome-status 304 in 1615ms :: {"hasWelcomeMessage":false,"m…
+🎯 ADMIN: Triggering welcome message from member view preview
+🎯 ADMIN: Admin Prince Derder (user_JaBx79tOt0qf1) testing welcome experience
+🎯 ADMIN: Found existing customer record for admin Prince Derder
+🎯 ADMIN: Using message template: "Hey {name}! Welcome! I wanted to reach out persona..."
+🎵 Starting audio generation for Prince Derder (PREVIEW MODE)
+✅ Preview mode - skipping credit check
+✅ Created audio message record for Prince Derder
+🐟 Checking Fish Audio model d788248a11a641f985330047a72db2a7...
+🐟 Getting Fish Audio model: d788248a11a641f985330047a72db2a7
+🐟 Generating speech with Fish Audio for Prince Derder
+🐟 Generating speech with Fish Audio s1 model: d788248a11a641f985330047a72db2a7
+🐟 Text: Hey Prince Derder! Welcome! I wanted to reach out personally to let you know how excited I am to hav...
+🐟 Speech generated successfully with s1 model
+✅ Audio will be available at: https://f2225279-65b0-4dd1-92f4-5af2ea774f5b-00-2ttwlf4yi642u.sisko.replit.dev/api/audio/691058c77316ef452a14ad52
+🎉 Audio generation completed for Prince Derder
+👁️ Preview mode - skipping DM send
+✅ ADMIN: Welcome message preview generated for admin Prince Derder
+9:03:11 AM [express] POST /api/admin/trigger-welcome 200 in 10415ms :: {"success":true,"message":"Pr…
+📦 Retrieved company ID for welcome status: biz_MrwMXHH41fULEl
+🎯 Using creator for company biz_MrwMXHH41fULEl: 690f83e380cd8043316236ff
+9:03:14 AM [express] GET /api/customer/welcome-status 304 in 2076ms :: {"hasWelcomeMessage":false,"m…

@@ -1,0 +1,722 @@
+HEYGEN API DOCUMENTATION REFERENCE
+================================================================================
+
+This document contains understanding and reference information for the HeyGen API
+based on the official documentation. Use this as a quick reference for
+implementing HeyGen integrations for AI avatar video generation.
+
+================================================================================
+REFERENCE LINKS
+================================================================================
+
+1. Quick Start
+   https://docs.heygen.com/docs/quick-start
+
+2. Customize Video Background
+   https://docs.heygen.com/docs/customize-video-background
+
+3. Using Audio Source as Voice
+   https://docs.heygen.com/docs/using-audio-source-as-voice
+
+4. Create Videos with Personal Avatar and Voice
+   https://docs.heygen.com/docs/create-videos-with-your-personal-avatar-and-voice
+
+5. Create WebM Avatar Videos
+   https://docs.heygen.com/docs/create-webm-avatar-videos
+
+6. Write Webhook Endpoint to Process Events
+   https://docs.heygen.com/docs/write-your-endpoint-to-process-webhook-events
+
+7. Generate AI Avatar Photos
+   https://docs.heygen.com/docs/generate-ai-avatar-photos
+
+8. Create and Train Photo Avatar Groups
+   https://docs.heygen.com/docs/create-and-train-photo-avatar-groups
+
+9. Create Videos with Photo Avatars
+   https://docs.heygen.com/docs/create-videos-with-photo-avatars
+
+================================================================================
+AUTHENTICATION
+================================================================================
+
+All API requests require:
+- X-Api-Key header with your API key
+- Get API key from: Settings > Subscriptions > HeyGen API > API Token
+
+Authentication Example:
+```
+curl --request GET \
+     --url https://api.heygen.com/v2/avatars \
+     --header 'Accept: application/json' \
+     --header 'X-Api-Key: <your-api-key>'
+```
+
+================================================================================
+PRICING & PLANS
+================================================================================
+
+HeyGen API is offered independently from the HeyGen App.
+
+- Free Trial: Automatically provided to all HeyGen App users
+  - Includes Video Generation, Video Translation, Interactive Avatar endpoints
+  - Videos will be watermarked during trial
+  
+- Paid Tiers: Pro, Scale, and Enterprise
+  - For increased usage and removing watermarks
+  
+- Video URL Expiration: Generated video URLs expire in 7 days
+  - URLs are regenerated with new expiration each time you check status
+
+================================================================================
+KEY CONCEPTS
+================================================================================
+
+AVATARS
+- Studio Avatars: Pre-made HeyGen avatars
+- Instant Avatars: Custom avatars created by users
+- Photo Avatars: AI-generated or user-uploaded photo-based avatars
+- Avatar Groups: Collections of avatar looks with consistent appearance
+- ID format: avatar_id (e.g., "Angela-inblackskirt-20220820")
+
+VOICES
+- Text-to-Speech: Generate voice from text input
+- Audio Source: Use custom audio files
+- Instant Voices: Custom voices created by users
+- Voice attributes: language, gender, emotion support, pause support
+- ID format: voice_id (alphanumeric hash)
+
+VIDEO GENERATION
+- Test Mode: For testing without credits
+- Video Statuses: pending, processing, completed, failed
+- Video Formats: MP4, WebM (transparent background)
+- Background Types: color, image, video
+
+PHOTO AVATARS
+- Generation: AI-generated based on attributes (age, gender, ethnicity, etc.)
+- Groups: Collections of avatar looks for consistency
+- Training: Improves consistency across looks
+- Looks: Different styles/poses of the same avatar
+
+WEBHOOKS
+- Event Types: avatar_video.success, etc.
+- Security: HMAC SHA256 signature verification
+- Callback IDs: Track specific video generation requests
+
+================================================================================
+1. VIDEO GENERATION API
+================================================================================
+
+GENERATE VIDEO (V2)
+Endpoint: POST /v2/video/generate
+Purpose: Create avatar videos with text or audio input
+
+Request Body:
+- test (boolean): Set to true for test mode (no credits charged)
+- caption (boolean): Include captions in video
+- title (string): Video title
+- callback_id (string): Optional ID for webhook callbacks
+- video_inputs (array): Array of video input objects
+  - character (object): Avatar settings
+    - type: "avatar" | "talking_photo"
+    - avatar_id: ID of avatar to use
+    - avatar_style: "normal" | "circle"
+    - talking_photo_id: ID of photo avatar (if type is talking_photo)
+  - voice (object): Voice settings
+    - type: "text" | "audio"
+    - input_text: Text to speak (if type is text)
+    - voice_id: ID of voice to use
+    - audio_url: URL to audio file (if type is audio)
+    - audio_asset_id: ID of uploaded audio asset (if type is audio)
+  - background (object): Background settings
+    - type: "color" | "image" | "video"
+    - value: Hex color code (if type is color, e.g., "#FFFFFF")
+    - url: URL to image/video (if type is image/video)
+    - image_asset_id: ID of uploaded image (if type is image)
+    - video_asset_id: ID of uploaded video (if type is video)
+    - play_style: "fit_to_scene" | "freeze" | "loop" | "once" (if video)
+
+Response:
+- code: 100 (success)
+- data:
+  - video_id: ID of created video
+
+Common Background Colors:
+- #008000: Green screen for chroma keying
+- Any hex color for solid backgrounds
+
+Use Cases:
+- Create avatar videos with custom scripts
+- Generate videos with audio narration
+- Create videos with custom backgrounds
+- Batch video generation with consistent branding
+
+---
+
+CHECK VIDEO STATUS
+Endpoint: GET /v1/video_status.get?video_id={video_id}
+Purpose: Check the generation status of a video
+
+Query Parameters:
+- video_id (required): ID of video to check
+
+Response (Completed):
+- code: 100
+- data:
+  - video_id: Video ID
+  - status: "completed"
+  - video_url: URL to download video (expires in 7 days)
+  - thumbnail_url: URL to video thumbnail
+  - gif_url: URL to animated GIF preview
+  - caption_url: URL to caption file (if captions enabled)
+  - duration: Video duration in seconds
+  - error: null
+
+Response (Processing):
+- status: "processing"
+- All URLs and duration are null
+
+Response (Pending):
+- status: "pending"
+- All URLs and duration are null
+
+Response (Failed):
+- status: "failed"
+- error:
+  - code: Error code (e.g., 40119)
+  - message: Error message
+  - detail: Detailed error description
+
+Common Error Codes:
+- 40119: Video too long for current plan
+
+Use Cases:
+- Poll for video completion
+- Retrieve download URLs
+- Error handling and retry logic
+- Display video generation progress to users
+
+---
+
+DOWNLOAD VIDEO
+Once status is "completed", use the video_url from the status response:
+
+```bash
+curl -o video.mp4 "<video_url>"
+```
+
+Python example:
+```python
+import requests
+response = requests.get(video_url)
+with open('video.mp4', 'wb') as f:
+    f.write(response.content)
+```
+
+================================================================================
+2. WEBM VIDEO GENERATION (TRANSPARENT BACKGROUND)
+================================================================================
+
+GENERATE WEBM VIDEO
+Endpoint: POST /v1/video.webm
+Purpose: Create WebM videos with transparent backgrounds
+
+Note: This endpoint only supports HeyGen studio avatars, not custom avatars.
+
+Request Body:
+- avatar_pose_id (string): Avatar pose/style ID
+- avatar_style (string): "normal" or other styles
+- input_text (string): Text for avatar to speak
+- voice_id (string): ID of voice to use
+- dimension (object): Video dimensions
+  - width: Width in pixels
+  - height: Height in pixels
+
+Response:
+- error: null (if successful)
+- data:
+  - video_id: ID of created video
+
+Use Cases:
+- Create videos for overlay on other content
+- Generate avatar videos for web applications
+- Create transparent avatar animations
+- Export videos for video editing software
+
+================================================================================
+3. AVATAR MANAGEMENT
+================================================================================
+
+LIST AVATARS
+Endpoint: GET /v2/avatars
+Purpose: Get list of all available avatars including instant avatars
+
+Response:
+- error: null
+- data:
+  - avatars (array): List of avatar objects
+    - avatar_id: Unique avatar identifier
+    - avatar_name: Display name of avatar
+    - gender: "male" | "female" | "unknown"
+    - preview_image_url: URL to avatar preview image
+    - preview_video_url: URL to avatar preview video
+
+Use Cases:
+- Display avatar selection interface
+- Find avatar_id for video generation
+- Show avatar previews to users
+- Filter avatars by gender
+
+---
+
+LIST AVATAR GROUPS
+Endpoint: GET /v2/avatar_group.list
+Purpose: Get list of photo avatar groups
+
+Response:
+- error: null
+- data:
+  - total_count: Total number of groups
+  - avatar_group_list (array):
+    - id: Group ID
+    - name: Group name
+    - created_at: Creation timestamp
+    - num_looks: Number of looks in group
+    - preview_image_url: Preview image URL
+    - group_type: "PHOTO"
+    - train_status: "ready" | "training" | "pending"
+
+---
+
+LIST AVATAR GROUP LOOKS
+Endpoint: GET /v2/avatar_group/{group_id}/avatars
+Purpose: Get all looks/styles within an avatar group
+
+Response:
+- error: null
+- data:
+  - avatar_list (array):
+    - id: Look/avatar ID
+    - image_url: Image URL
+    - created_at: Creation timestamp
+    - name: Look name
+    - status: "completed" | "processing" | "pending"
+    - group_id: Parent group ID
+    - is_motion: Whether it includes motion
+    - motion_preview_url: URL to motion preview
+    - business_type: "generated" | "user_upload"
+    - upscaled: Whether image is upscaled
+    - background_sound_effect: Background sound settings
+
+================================================================================
+4. VOICE MANAGEMENT
+================================================================================
+
+LIST VOICES
+Endpoint: GET /v2/voices
+Purpose: Get list of all available voices
+
+Response:
+- error: null
+- data:
+  - voices (array): List of voice objects
+    - voice_id: Unique voice identifier
+    - language: Voice language (e.g., "English")
+    - gender: "Male" | "Female" | "unknown"
+    - name: Display name of voice
+    - preview_audio: URL to voice preview audio
+    - support_pause: Whether voice supports pause markup
+    - emotion_support: Whether voice supports emotions
+    - support_interactive_avatar: Interactive avatar compatibility
+
+Use Cases:
+- Display voice selection interface
+- Find voice_id for video generation
+- Preview voices for users
+- Filter voices by language/gender
+- Check voice capabilities
+
+================================================================================
+5. PHOTO AVATAR API
+================================================================================
+
+GENERATE AI AVATAR PHOTOS
+Endpoint: POST /v2/photo_avatar/photo/generate
+Purpose: Generate AI-created avatar photos with custom attributes
+
+Request Body:
+- name (string): Name for the avatar
+- age (string): "Young Adult" | "Adult" | "Senior"
+- gender (string): "Man" | "Woman"
+- ethnicity (string): "Asian American" | "Caucasian" | etc.
+- orientation (string): "horizontal" | "vertical" | "square"
+- pose (string): "half_body" | "full_body" | "headshot"
+- style (string): "Realistic" | "Artistic" | etc.
+- appearance (string): Detailed description of appearance and setting
+
+Response:
+- error: null
+- data:
+  - generation_id: ID to check generation status
+
+---
+
+CHECK PHOTO GENERATION STATUS
+Endpoint: GET /v2/photo_avatar/generation/{generation_id}
+Purpose: Check status of photo generation
+
+Response (In Progress):
+- data:
+  - id: Generation ID
+  - status: "in_progress"
+  - image_url_list: null
+  - image_key_list: null
+
+Response (Success):
+- data:
+  - id: Generation ID
+  - status: "success"
+  - image_url_list: Array of generated image URLs
+  - image_key_list: Array of image keys for use in other APIs
+
+Use Cases:
+- Generate custom avatar photos
+- Create diverse avatar library
+- Personalize avatar appearance
+- Generate avatars for different demographics
+
+---
+
+CREATE PHOTO AVATAR GROUP
+Endpoint: POST /v2/photo_avatar/avatar_group/create
+Purpose: Create a new photo avatar group
+
+Request Body:
+- name (string): Group name
+- image_key (string): Image key from generation or upload
+
+Response:
+- error: null
+- data:
+  - id: Avatar group ID
+  - group_id: Same as id
+  - name: Group name
+  - status: "pending" | "completed"
+  - image_url: URL to avatar image
+  - created_at: Creation timestamp
+  - is_motion: Whether includes motion
+  - business_type: "generated" | "user_upload"
+  - upscaled: Whether upscaled
+
+---
+
+ADD LOOKS TO AVATAR GROUP
+Endpoint: POST /v2/photo_avatar/avatar_group/add
+Purpose: Add multiple looks/styles to existing avatar group
+
+Request Body:
+- group_id (string): Target group ID
+- name (string): Name for the looks
+- image_keys (array): Array of image keys to add
+
+Response:
+- error: null
+- data:
+  - photo_avatar_list (array): Array of created avatar look objects
+
+---
+
+TRAIN PHOTO AVATAR GROUP
+Endpoint: POST /v2/photo_avatar/train
+Purpose: Train avatar group for better consistency
+
+Request Body:
+- group_id (string): Group ID to train
+
+Response:
+- error: null
+- data:
+  - code: 100 (success)
+
+---
+
+GET TRAINING STATUS
+Endpoint: GET /v2/photo_avatar/train/status/{group_id}
+Purpose: Check training job status
+
+Response:
+- error: null
+- data:
+  - status: "pending" | "training" | "ready"
+  - error_msg: Error message if failed
+  - created_at: Training job creation time
+  - updated_at: Last update time
+
+---
+
+GENERATE PHOTO AVATAR LOOKS
+Endpoint: POST /v2/photo_avatar/look/generate
+Purpose: Generate new looks for trained avatar group
+
+Request Body:
+- group_id (string): Trained group ID
+- prompt (string): Description of desired look (e.g., "White shirt front-facing")
+- orientation (string): "horizontal" | "vertical" | "square"
+- pose (string): "half_body" | "full_body" | "headshot"
+- style (string): "Realistic" | "Artistic"
+
+Response:
+- error: null
+- data:
+  - generation_id: ID to check generation status
+
+Check status using the same endpoint as photo generation:
+GET /v2/photo_avatar/generation/{generation_id}
+
+Use Cases:
+- Create consistent avatar looks
+- Generate avatar variations
+- Maintain brand consistency
+- Create avatar wardrobe/styles
+
+================================================================================
+6. WEBHOOK API
+================================================================================
+
+ADD WEBHOOK ENDPOINT
+Endpoint: POST /v1/webhook/endpoint.add
+Purpose: Register webhook endpoint to receive video completion events
+
+Request Body:
+- url (string): Your webhook endpoint URL
+- events (array): Array of event types to subscribe to
+  - "avatar_video.success": Video generation completed
+
+Response:
+- code: 100
+- data:
+  - endpoint_id: Webhook endpoint ID
+  - username: Your username
+  - url: Registered endpoint URL
+  - status: "enabled"
+  - events: Subscribed event types
+  - secret: Secret key for signature verification
+  - created_at: Registration timestamp
+  - space_id: Your space ID
+
+Webhook Event Payload:
+- event_type: Type of event (e.g., "avatar_video.success")
+- event_data:
+  - video_id: ID of completed video
+  - url: URL to download video
+  - callback_id: Your callback ID (if provided)
+
+Security - Signature Verification:
+All webhook requests include a "Signature" header with HMAC SHA256 hash.
+
+Python verification example:
+```python
+import hmac
+from hashlib import sha256
+
+def verify_webhook(content, signature, secret):
+    mac = hmac.new(
+        secret.encode("utf-8"),
+        msg=content.encode("utf-8"),
+        digestmod=sha256,
+    )
+    computed_signature = mac.hexdigest()
+    
+    if computed_signature != signature:
+        raise Exception("Invalid request")
+    
+    return True
+```
+
+Node.js verification example:
+```javascript
+const crypto = require("crypto");
+
+function verifyWebhook(content, signature, secret) {
+  const hmac = crypto.createHmac("sha256", secret);
+  hmac.update(content, "utf-8");
+  const computedSignature = hmac.digest("hex");
+  
+  if (computedSignature !== signature) {
+    throw new Error("Invalid request");
+  }
+  
+  return true;
+}
+```
+
+Use Cases:
+- Receive video completion notifications
+- Automate video processing workflows
+- Update database when videos are ready
+- Trigger downstream actions
+
+================================================================================
+7. ASSET UPLOAD API
+================================================================================
+
+UPLOAD ASSET
+Endpoint: POST /v1/asset
+Purpose: Upload images, videos, or audio files to HeyGen
+
+Use Cases:
+- Upload custom background images
+- Upload custom background videos
+- Upload audio files for voice
+- Upload photos for avatar groups
+
+After upload, you receive an asset_id or image_key to use in other APIs.
+
+================================================================================
+COMMON USE CASES
+================================================================================
+
+1. SIMPLE AVATAR VIDEO GENERATION
+   - List avatars: GET /v2/avatars
+   - List voices: GET /v2/voices
+   - Generate video: POST /v2/video/generate
+   - Check status: GET /v1/video_status.get
+   - Download video when completed
+
+2. CUSTOM BACKGROUND VIDEOS
+   - Upload background: POST /v1/asset (get video_asset_id)
+   - Generate video with background:
+     POST /v2/video/generate (include background settings)
+   - Check status and download
+
+3. AUDIO-BASED VIDEOS
+   - Upload audio: POST /v1/asset (get audio_asset_id)
+   - Generate video with audio voice type
+   - Use audio_asset_id instead of text input
+
+4. PERSONAL AVATAR VIDEOS
+   - Create instant avatar on web interface
+   - List avatars to get avatar_id
+   - List voices to get custom voice_id
+   - Generate video with personal avatar and voice
+
+5. PHOTO AVATAR WORKFLOW
+   - Generate AI photos: POST /v2/photo_avatar/photo/generate
+   - Create avatar group: POST /v2/photo_avatar/avatar_group/create
+   - Add more looks: POST /v2/photo_avatar/avatar_group/add
+   - Train group: POST /v2/photo_avatar/train
+   - Generate new looks: POST /v2/photo_avatar/look/generate
+   - Create videos: POST /v2/video/generate (with talking_photo_id)
+
+6. TRANSPARENT AVATAR VIDEOS
+   - List avatars: GET /v2/avatars
+   - List voices: GET /v2/voices
+   - Generate WebM: POST /v1/video.webm
+   - Check status and download for overlay use
+
+7. WEBHOOK AUTOMATION
+   - Register webhook: POST /v1/webhook/endpoint.add
+   - Generate videos with callback_id
+   - Receive completion events at webhook endpoint
+   - Verify signature for security
+   - Process video data automatically
+
+================================================================================
+BEST PRACTICES
+================================================================================
+
+1. Always verify webhook signatures to ensure requests are from HeyGen
+2. Store and reuse avatar_id and voice_id to avoid repeated API calls
+3. Use test mode during development to avoid credit consumption
+4. Download and store videos before URLs expire (7 days)
+5. Implement exponential backoff when polling video status
+6. Use webhooks instead of polling when possible for better efficiency
+7. Provide clear callback_id for tracking in webhook events
+8. Use avatar groups for consistent branding across videos
+9. Train photo avatar groups for best quality and consistency
+10. Cache avatar and voice lists to reduce API calls
+11. Handle all video statuses: pending, processing, completed, failed
+12. Implement proper error handling for failed generations
+13. Use appropriate background types for your use case
+14. Consider video duration limits based on your plan
+15. Use WebM format for transparent backgrounds when overlaying
+
+================================================================================
+VIDEO GENERATION TIPS
+================================================================================
+
+Background Selection:
+- Color: Use hex codes, #008000 for green screen
+- Image: Upload high-resolution images for best quality
+- Video: Use play_style to control video background behavior
+  - "loop": Continuous loop
+  - "once": Play once and freeze
+  - "freeze": Freeze at first frame
+  - "fit_to_scene": Scale to fit scene
+
+Voice Quality:
+- Use high-quality audio files (if using audio source)
+- Check voice preview before using in production
+- Consider emotion_support for more expressive videos
+- Use pause support for natural speech patterns
+
+Avatar Selection:
+- Preview avatars before committing to production
+- Use instant avatars for personalized content
+- Photo avatars work well for headshots and portraits
+- Studio avatars provide professional appearance
+
+Performance:
+- Video generation time varies by complexity
+- Typical processing: 30 seconds to several minutes
+- Use webhooks to avoid constant polling
+- Batch similar videos for efficiency
+
+================================================================================
+PHOTO AVATAR BEST PRACTICES
+================================================================================
+
+Ideal Photo Selection:
+- Use recent, high-resolution images
+- Include diverse angles and expressions
+- Mix close-up and full-body shots
+- Ensure consistent lighting
+- Minimize background distractions
+- Show natural, authentic appearance
+- Include variety: smiling, neutral, serious
+- Different outfit styles add versatility
+
+Training Tips:
+- Upload 10+ photos for best results
+- Wait for "ready" status before generating looks
+- Generate multiple looks for variety
+- Use descriptive prompts for look generation
+
+================================================================================
+ERROR CODES
+================================================================================
+
+Common HTTP Status Codes:
+- 200: Success
+- 400: Bad Request (invalid parameters)
+- 401: Unauthorized (invalid API key)
+- 403: Forbidden (insufficient permissions/credits)
+- 404: Not Found (invalid resource ID)
+- 500: Internal Server Error
+
+Video Generation Error Codes:
+- 40119: Video too long for plan (> 3600s limit)
+
+================================================================================
+RATE LIMITS
+================================================================================
+
+Rate limits vary by subscription plan:
+- Free Trial: Limited requests
+- Pro, Scale, Enterprise: Higher limits
+
+Best practice: Implement retry logic with exponential backoff for rate limit errors.
+
+================================================================================
+END OF DOCUMENTATION
+================================================================================

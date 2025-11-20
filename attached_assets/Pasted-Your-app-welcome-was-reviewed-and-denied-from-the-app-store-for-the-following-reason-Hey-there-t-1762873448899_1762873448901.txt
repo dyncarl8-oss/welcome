@@ -1,0 +1,45 @@
+Your app, welcome, was reviewed and denied from the app store for the following reason: Hey there, thanks for submitting your app! We weren’t able to approve it for the store right now due to a few issues affecting functionality, data handling, and user experience. Here’s what we found during testing:
+
+
+
+- Video generation: Test videos sent to owners when previewing the member view fail to generate, but still deduct a generation credit even though no video is produced. When members test they get a: The support channel couldn’t be created or found. Error. 
+
+
+
+- Support chat: The support channel couldn’t be created or found. You’ll likely want to create a support chat between the creator (owner) and their member, rather than between the app and the member.
+
+
+
+- Theme handling: The app doesn’t respect a user’s Whop light/dark mode preference. You can fix this with conditional class names (e.g., bg-blue dark:bg-red) or use Frosted-UI for automatic theme syncing. https://storybook.whop.dev/?path=/docs/introduction--docs
+
+
+
+- Active users: The app isn’t correctly tracking active users, agent users are being counted as part of total members. Use the list-memberships endpoint to filter for active memberships only.
+
+https://docs.whop.com/api-reference/memberships/list-memberships
+
+
+
+- Audio buttons: The audio buttons on member cards don’t work.
+
+
+
+What to focus on next
+
+- Ensure test video generation succeeds without consuming credits when it fails.
+
+- Rebuild the support chat logic so it’s between creator and member.
+
+- Implement theme handling via Frosted-UI or proper class names.
+
+- Filter active members correctly using Whop’s membership API.
+
+- Fix audio playback controls for member cards.
+
+
+
+The app is really promising and close, just needs a few fixes around video generation, chat handling, and member tracking before it’s ready for the store..
+
+
+
+Revise and resubmit your app to be considered again here: https://whop.com/welcome-7a-45e7

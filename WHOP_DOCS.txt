@@ -1,0 +1,700 @@
+WHOP API DOCUMENTATION REFERENCE
+================================================================================
+
+This document contains understanding and reference information for the Whop API
+based on the official documentation. Use this as a quick reference for
+implementing Whop integrations.
+
+================================================================================
+REFERENCE LINKS
+================================================================================
+
+1. Companies API - Retrieve Company
+   https://docs.whop.com/api-reference/companies/retrieve-company
+
+2. Members API - List Members
+   https://docs.whop.com/api-reference/members/list-members
+
+3. Members API - Retrieve Member
+   https://docs.whop.com/api-reference/members/retrieve-member
+
+4. Authorized Users API - List Authorized Users
+   https://docs.whop.com/api-reference/authorized-users/list-authorized-users
+
+5. Authorized Users API - Retrieve Authorized User
+   https://docs.whop.com/api-reference/authorized-users/retrieve-authorized-user
+
+6. Users API - Retrieve User
+   https://docs.whop.com/api-reference/users/retrieve-user
+
+7. Users API - Check Access
+   https://docs.whop.com/api-reference/users/check-access
+
+8. Experiences API - List Experiences
+   https://docs.whop.com/api-reference/experiences/list-experiences
+
+9. Experiences API - Retrieve Experience
+   https://docs.whop.com/api-reference/experiences/retrieve-experience
+
+10. Messages API - List Messages
+    https://docs.whop.com/api-reference/messages/list-messages
+
+11. Messages API - Create Message
+    https://docs.whop.com/api-reference/messages/create-message
+
+12. Chat Channels API - List Chat Channels
+    https://docs.whop.com/api-reference/chat-channels/list-chat-channels
+
+13. Chat Channels API - Retrieve Chat Channel
+    https://docs.whop.com/api-reference/chat-channels/retrieve-chat-channel
+
+14. Chat Channels API - Update Chat Channel
+    https://docs.whop.com/api-reference/chat-channels/update-chat-channel
+
+================================================================================
+AUTHENTICATION
+================================================================================
+
+All API requests require:
+- Authorization header with app API key
+- App ID for SDK initialization
+- Format: "Authorization: Bearer <API_KEY>"
+- Get API keys from: /dashboard/developer page
+
+SDK Initialization Example:
+```javascript
+import Whop from '@whop/sdk';
+
+const client = new Whop({
+  appID: 'app_xxxxxxxxxxxxxx',
+  apiKey: 'My API Key',
+});
+```
+
+================================================================================
+KEY CONCEPTS
+================================================================================
+
+COMPANIES
+- Represents a business/seller on Whop
+- Has an owner user
+- Contains members (customers/users)
+- Has authorized users (staff with elevated permissions)
+- ID format: biz_xxxxxxxxxxxxxx
+
+MEMBERS
+- Connection between a company and a user/customer
+- Represents customers who have purchased access
+- Tracks spending, membership status, and access level
+- Can have different statuses: drafted, joined, left
+- Tracks most recent action (e.g., paid_subscriber, trialing, churned)
+
+AUTHORIZED USERS
+- Users with elevated privileges for a company
+- Different roles: owner, admin, sales_manager, moderator, app_manager, support, manager
+- ID format: ausr_xxxxxxxxxxxxx
+
+USERS
+- Individual user accounts on Whop
+- ID format: user_xxxxxxxxxxxxx
+- Has username, name, email, bio
+- Can be members of multiple companies
+- Can be authorized users of companies
+
+ACCESS LEVELS
+- no_access: No access to the resource
+- customer: Has a valid membership
+- admin: Has administrative privileges
+
+EXPERIENCES
+- Represents app integrations/features within a company
+- Connected to specific apps and products
+- Has an order for positioning
+- ID format: exp_xxxxxxxxxxxxxx
+
+MESSAGES
+- Chat/DM messages in channels or experiences
+- Supports markdown content
+- Can have polls, reactions, and replies
+- Tracks view counts and edit status
+
+CHAT CHANNELS
+- Communication channels for companies
+- Can be restricted to specific products
+- Configurable posting/reaction permissions
+- Supports moderation features (banned words, cooldowns, media restrictions)
+
+================================================================================
+1. COMPANIES API
+================================================================================
+
+RETRIEVE COMPANY
+Endpoint: GET /companies/{id}
+SDK Method: client.companies.retrieve('biz_xxxxxxxxxxxxxx')
+
+Purpose: Get detailed information about a specific company
+
+Response Fields:
+- id (string): Company ID (e.g., "biz_xxxxxxxxxxxxxx")
+- title (string): Company name
+- verified (boolean): Whop verification status
+- business_type (enum): Type of business (education_program, coaching, software, 
+  paid_group, newsletter, agency, physical_products, etc.)
+- industry_type (enum): Industry (trading, sports_betting, reselling, fitness, 
+  amazon_fba, real_estate, etc.)
+- created_at (datetime): When company was created
+- updated_at (datetime): Last update timestamp
+- member_count (integer): Total number of members
+- owner_user (object): User who owns the company
+  - id, name, username
+- route (string): Company slug/URL route on Whop
+- social_links (array): Social media links
+  - id, url, website (x, instagram, facebook, tiktok, youtube, etc.)
+- published_reviews_count (integer): Number of published reviews
+
+Use Cases:
+- Display company profile information
+- Show company verification status
+- Get member count statistics
+- Display social media links
+
+================================================================================
+2. MEMBERS API
+================================================================================
+
+LIST MEMBERS
+Endpoint: GET /members
+SDK Method: client.members.list({ company_id: 'biz_xxxxxxxxxxxxxx' })
+
+Purpose: Get paginated list of all members for a company
+
+Query Parameters:
+- company_id (required): Company ID to list members for
+- after/before: Pagination cursors
+- first/last: Number of items to return
+- direction: Sort direction (asc/desc)
+- order: Sort by (id, usd_total_spent, created_at, joined_at, most_recent_action)
+- created_before/created_after: Date filters
+- access_level: Filter by access (no_access, admin, customer)
+- access_pass_ids: Filter by specific access passes
+- plan_ids: Filter by specific plans
+- statuses: Filter by status (drafted, joined, left)
+- promo_code_ids: Filter by promo codes used
+- most_recent_actions: Filter by action (canceling, churned, paid_subscriber, 
+  trialing, expiring, etc.)
+- query: Search by name, username, or email
+
+Response Structure:
+- data (array): List of member objects
+- page_info (object): Pagination information
+  - end_cursor, start_cursor
+  - has_next_page, has_previous_page
+
+Member Object Fields:
+- id (string): Member ID
+- created_at (datetime): Member creation time
+- updated_at (datetime): Last update
+- joined_at (datetime): When member joined company
+- access_level (enum): no_access, admin, or customer
+- status (enum): drafted, joined, or left
+- most_recent_action (enum): Latest member action
+- most_recent_action_at (datetime): Timestamp of action
+- user (object): Associated user info (id, email, name, username)
+- phone (string): Phone number if available
+- usd_total_spent (number): Total amount spent on company products
+
+Use Cases:
+- Display member list/directory
+- Filter active/inactive members
+- Track customer spending
+- Search for specific members
+- Export member data
+- Analytics on member behavior
+
+---
+
+RETRIEVE MEMBER
+Endpoint: GET /members/{id}
+SDK Method: client.members.retrieve('id')
+
+Purpose: Get detailed information about a specific member
+
+Response: Same fields as list response, plus:
+- company (object): Company information
+  - id, title, route
+
+Use Cases:
+- View individual member profile
+- Check member status and access
+- View member purchase history total
+- Display member details in admin panel
+
+================================================================================
+3. AUTHORIZED USERS API
+================================================================================
+
+LIST AUTHORIZED USERS
+Endpoint: GET /authorized_users
+SDK Method: client.authorizedUsers.list({ company_id: 'biz_xxxxxxxxxxxxxx' })
+
+Purpose: Get list of users with elevated permissions for a company
+
+Query Parameters:
+- company_id (required): Company ID
+- after/before: Pagination cursors
+- first/last: Number of items
+- user_id: Filter by specific user
+- role: Filter by role (owner, admin, sales_manager, moderator, app_manager, 
+  support, manager)
+
+Response Structure:
+- data (array): List of authorized user objects
+- page_info (object): Pagination info
+
+Authorized User Object:
+- id (string): Authorized user ID (e.g., "ausr_xxxxxxxxxxxxx")
+- role (enum): owner, admin, sales_manager, moderator, app_manager, support, manager
+- user (object): Associated user
+  - id, name, username, email
+
+Use Cases:
+- Display team members
+- Check if user has admin access
+- Manage staff permissions
+- Show company owners/admins
+
+---
+
+RETRIEVE AUTHORIZED USER
+Endpoint: GET /authorized_users/{id}
+SDK Method: client.authorizedUsers.retrieve('ausr_xxxxxxxxxxxxx')
+
+Purpose: Get details about a specific authorized user
+
+Response: Same as list item (id, role, user object)
+
+Use Cases:
+- View individual staff member details
+- Verify admin permissions
+- Display user role
+
+================================================================================
+4. USERS API
+================================================================================
+
+RETRIEVE USER
+Endpoint: GET /users/{id}
+SDK Method: client.users.retrieve('user_xxxxxxxxxxxxx')
+
+Purpose: Get public profile information about a user
+
+Response Fields:
+- id (string): User ID (e.g., "user_xxxxxxxxxxxxx")
+- username (string): Whop username
+- name (string): User's full name
+- created_at (datetime): Account creation date
+- bio (string): User's bio
+
+Use Cases:
+- Display user profile
+- Show user information in member lists
+- User directory/search
+
+---
+
+CHECK ACCESS
+Endpoint: GET /users/{id}/access/{resource_id}
+SDK Method: client.users.checkAccess('resource_id', { id: 'user_xxxxxxxxxxxxx' })
+
+Purpose: Verify if a user has access to a specific resource (company, product, etc.)
+
+Path Parameters:
+- id (required): User ID
+- resource_id (required): Resource to check access for
+
+Response:
+- has_access (boolean): Whether user has access
+- access_level (enum): no_access, admin, or customer
+
+Use Cases:
+- Gate content based on membership
+- Verify user permissions before showing features
+- Check if user can access specific products
+- Implement access control in apps
+- Validate subscriptions
+
+================================================================================
+5. EXPERIENCES API
+================================================================================
+
+LIST EXPERIENCES
+Endpoint: GET /experiences
+SDK Method: client.experiences.list({ company_id: 'biz_xxxxxxxxxxxxxx' })
+
+Purpose: Get paginated list of all experiences for a company
+
+Query Parameters:
+- company_id (required): Company ID to filter experiences
+- product_id: Filter by specific product (e.g., "prod_xxxxxxxxxxxxx")
+- app_id: Filter by specific app (e.g., "app_xxxxxxxxxxxxxx")
+- after/before: Pagination cursors
+- first/last: Number of items to return
+
+Response Structure:
+- data (array): List of experience objects
+- page_info (object): Pagination information
+
+Experience Object Fields:
+- id (string): Experience ID (e.g., "exp_xxxxxxxxxxxxxx")
+- name (string): Experience name/description
+- order (string): Order/position of experience in section (e.g., "123.45")
+- created_at (datetime): When experience was created
+- app (object): Associated app
+  - id, name
+- company (object): Company that owns the experience
+  - id, title, route
+
+Use Cases:
+- List all app integrations for a company
+- Display experiences by product
+- Show company's available features
+- Order experiences for display
+
+---
+
+RETRIEVE EXPERIENCE
+Endpoint: GET /experiences/{id}
+SDK Method: client.experiences.retrieve('exp_xxxxxxxxxxxxxx')
+
+Purpose: Get detailed information about a specific experience
+
+Response: Same fields as list response, plus:
+- products (array): Access passes associated with experience
+  - id, route, title
+
+Use Cases:
+- Get experience details
+- View associated products/access passes
+- Display experience information
+- Check which products include this experience
+
+================================================================================
+6. MESSAGES API
+================================================================================
+
+LIST MESSAGES
+Endpoint: GET /messages
+SDK Method: client.messages.list({ channel_id: 'channel_id' })
+
+Purpose: Get paginated list of messages for a channel or experience
+
+Query Parameters:
+- channel_id (required): ID of channel or experience to list messages for
+- after/before: Pagination cursors
+- first/last: Number of items to return
+- direction: Sort direction (asc/desc) - sorted by creation time
+
+Response Structure:
+- data (array): List of message objects
+- page_info (object): Pagination information
+
+Message Object Fields:
+- id (string): Unique message identifier
+- content (string): Message content in Markdown format
+- created_at (datetime): When message was created
+- updated_at (datetime): When message was last updated
+- poll (object): Poll data if message contains a poll
+  - options (array): Poll options with id and text
+- replying_to_message_id (string): ID of message being replied to
+- is_edited (boolean): Whether message has been edited
+- is_pinned (boolean): Whether message is pinned
+- message_type (enum): regular, system, or automated
+- user (object): User who sent the message
+  - id, username, name
+- view_count (integer): Number of times message has been viewed
+- reaction_counts (array): Reaction statistics
+  - emoji, count
+- poll_votes (array): Poll vote counts
+  - option_id, count
+
+Use Cases:
+- Display chat history
+- Load messages for a channel
+- Show message threads with replies
+- Display poll results
+- Track message engagement (views, reactions)
+
+---
+
+CREATE MESSAGE
+Endpoint: POST /messages
+SDK Method: client.messages.create({ channel_id: 'channel_id', content: 'content' })
+
+Purpose: Send a new message to a channel or experience
+
+Request Body:
+- channel_id (required): ID of channel or experience to send to
+- content (required): Message content in Markdown format
+- attachments (array): Media attachments (videos, images)
+  - direct_upload_id: ID from S3 upload (first time upload)
+  - id: ID of existing attachment (when updating)
+- poll (object): Poll data
+  - options (array): Poll options with sequential IDs starting from 1
+    - id, text
+
+Response: Same as message object from list endpoint
+
+Use Cases:
+- Send chat messages
+- Post announcements
+- Create polls
+- Send messages with media attachments
+- Reply to messages (set replying_to_message_id)
+
+================================================================================
+7. CHAT CHANNELS API
+================================================================================
+
+LIST CHAT CHANNELS
+Endpoint: GET /chat_channels
+SDK Method: client.chatChannels.list({ company_id: 'biz_xxxxxxxxxxxxxx' })
+
+Purpose: Get paginated list of chat channels for a company
+
+Query Parameters:
+- company_id (required): Company ID to list chat channels for
+- product_id: Filter by specific product (e.g., "prod_xxxxxxxxxxxxx")
+- after/before: Pagination cursors
+- first/last: Number of items to return
+
+Response Structure:
+- data (array): List of chat channel objects
+- page_info (object): Pagination information
+
+Chat Channel Object Fields:
+- id (string): Unique channel identifier
+- experience (object): Associated experience
+  - id, name
+- ban_media (boolean): Whether media uploads are banned
+- ban_urls (boolean): Whether URLs are banned
+- who_can_post (enum): everyone or admins
+- who_can_react (enum): everyone or no_one
+- user_posts_cooldown_seconds (integer): Cooldown period between user posts
+- banned_words (array): List of banned words
+
+Use Cases:
+- List all chat channels for company
+- Filter channels by product
+- Display channel settings
+- Manage moderation settings
+
+---
+
+RETRIEVE CHAT CHANNEL
+Endpoint: GET /chat_channels/{id}
+SDK Method: client.chatChannels.retrieve('id')
+
+Purpose: Get detailed information about a specific chat channel
+
+Response: Same fields as list response
+
+Use Cases:
+- View channel configuration
+- Check moderation settings
+- Display channel information
+
+---
+
+UPDATE CHAT CHANNEL
+Endpoint: PATCH /chat_channels/{id}
+SDK Method: client.chatChannels.update('id', { ...settings })
+
+Purpose: Update settings for a chat channel
+
+Request Body (all optional):
+- ban_media (boolean): Whether to ban media uploads
+- ban_urls (boolean): Whether to ban URLs
+- banned_words (array): List of banned words
+- user_posts_cooldown_seconds (integer): Cooldown period in seconds
+- who_can_post (enum): everyone or admins
+- who_can_react (enum): everyone or no_one
+
+Response: Updated chat channel object
+
+Use Cases:
+- Configure channel permissions
+- Update moderation settings
+- Set posting cooldowns
+- Manage banned words list
+- Control media/URL permissions
+
+================================================================================
+COMMON ENUMS AND VALUES
+================================================================================
+
+ACCESS LEVELS:
+- no_access: No access to resource
+- admin: Administrative access
+- customer: Customer/member access
+
+MEMBER STATUSES:
+- drafted: Member created but not active
+- joined: Active member
+- left: Former member
+
+MOST RECENT ACTIONS:
+- canceling: Canceling subscription
+- churned: Subscription ended
+- finished_split_pay: Completed split payment
+- paused: Subscription paused
+- paid_subscriber: Active paying subscriber
+- paid_once: One-time payment
+- expiring: About to expire
+- joined: Just joined
+- drafted: Draft status
+- left: Left the company
+- trialing: On trial period
+- pending_entry: Pending access
+- renewing: Subscription renewing
+- past_due: Payment overdue
+
+AUTHORIZED USER ROLES:
+- owner: Company owner
+- admin: Administrator
+- sales_manager: Sales management
+- moderator: Content moderator
+- app_manager: App management
+- support: Customer support
+- manager: General manager
+
+MESSAGE TYPES:
+- regular: Normal user message
+- system: System-generated message
+- automated: Automated/bot message
+
+CHAT PERMISSIONS:
+- who_can_post: everyone, admins
+- who_can_react: everyone, no_one
+
+BUSINESS TYPES:
+education_program, coaching, software, paid_group, newsletter, agency,
+physical_products, brick_and_mortar, events, coaching_and_courses, other,
+saas, course, community
+
+INDUSTRY TYPES:
+trading, sports_betting, reselling, fitness, amazon_fba, real_estate,
+kindle_book_publishing, dating, agencies, health_and_wellness, social_media,
+sales, business, ecommerce, video_games, home_services, ai, public_speaking,
+personal_finance, careers, travel, clipping, spirituality, vas,
+personal_development, software, other, marketing_agency, sales_agency,
+ai_agency, design_agency, coaching_agency, development_agency,
+recruiting_agency, customer_support_agency, clipping_agency, clothing,
+supplements, beauty_and_personal_care, fitness_gear, accessories, home_goods,
+electronics_and_gadgets, food_and_beverages, gym, restaurant, retail_store,
+coffee_shop, salon_spa, medical_dentist_office, hotel_lodging, auto_repair_shop,
+masterminds, webinars, bootcamps, convention, concerts, meetups, parties
+
+================================================================================
+PAGINATION
+================================================================================
+
+All list endpoints support cursor-based pagination:
+
+Parameters:
+- first: Get first N items
+- last: Get last N items
+- after: Cursor for next page
+- before: Cursor for previous page
+
+Response includes page_info:
+- end_cursor: Cursor for next page
+- start_cursor: Cursor for previous page
+- has_next_page: Boolean for more items forward
+- has_previous_page: Boolean for more items backward
+
+SDK handles pagination automatically with async iterators:
+```javascript
+for await (const member of client.members.list({ company_id: 'biz_xxx' })) {
+  console.log(member.id);
+}
+```
+
+================================================================================
+COMMON USE CASES
+================================================================================
+
+1. MEMBER MANAGEMENT DASHBOARD
+   - List all members: client.members.list()
+   - Filter by status, spending, or join date
+   - Display member details with client.members.retrieve()
+   - Show total spending per member
+
+2. ACCESS CONTROL
+   - Check user access: client.users.checkAccess()
+   - Verify if user is authorized: client.authorizedUsers.list({ user_id })
+   - Gate features based on access_level
+
+3. COMPANY PROFILE
+   - Get company info: client.companies.retrieve()
+   - Display member count, verification status
+   - Show social links and business type
+
+4. TEAM MANAGEMENT
+   - List team members: client.authorizedUsers.list()
+   - Check roles and permissions
+   - Display staff directory
+
+5. USER PROFILES
+   - Get user info: client.users.retrieve()
+   - Display username, bio, join date
+
+6. ANALYTICS
+   - Track member growth (filter by created_at)
+   - Monitor churn (filter by most_recent_action: churned)
+   - Calculate revenue (sum usd_total_spent)
+   - Identify top customers (order by usd_total_spent)
+
+7. CHAT & MESSAGING
+   - List messages: client.messages.list({ channel_id })
+   - Send messages: client.messages.create({ channel_id, content })
+   - Configure chat channels: client.chatChannels.update()
+   - Create polls in messages
+   - Moderate chat with banned words and cooldowns
+
+8. EXPERIENCE MANAGEMENT
+   - List company experiences: client.experiences.list({ company_id })
+   - Filter experiences by product or app
+   - Display ordered list of features/integrations
+   - View products associated with experiences
+
+================================================================================
+ERROR CODES
+================================================================================
+
+All endpoints return standard HTTP error codes:
+- 200: Success
+- 400: Bad Request
+- 401: Unauthorized (invalid API key)
+- 403: Forbidden (insufficient permissions)
+- 404: Not Found
+- 422: Unprocessable Entity (validation error)
+- 500: Internal Server Error
+
+================================================================================
+BEST PRACTICES
+================================================================================
+
+1. Always handle pagination for list endpoints
+2. Cache company/user data when appropriate
+3. Use filters to reduce API calls
+4. Check access levels before displaying sensitive data
+5. Handle null values (many fields can be null)
+6. Use the SDK's async iterators for automatic pagination
+7. Implement proper error handling for all API calls
+8. Store API keys securely, never expose in client-side code
+9. Use query parameter to search members efficiently
+10. Leverage most_recent_action for member lifecycle tracking
+
+================================================================================
+END OF DOCUMENTATION
+================================================================================

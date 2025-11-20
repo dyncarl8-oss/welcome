@@ -1,0 +1,174 @@
+🎯 ADMIN: Triggering welcome message from member view preview
+🎯 ADMIN: Admin Prince Derder (user_JaBx79tOt0qf1) testing welcome experience
+🎯 ADMIN: Found existing customer record for admin Prince Derder
+🎵 Starting audio generation for Prince Derder
+✅ Unlimited plan - no credit check needed
+✅ Created audio message record for Prince Derder
+🐟 Checking Fish Audio model a726e82365a247db98a9895f1f611833...
+🐟 Getting Fish Audio model: a726e82365a247db98a9895f1f611833
+🐟 Generating speech with Fish Audio for Prince Derder
+🐟 Generating speech with Fish Audio s1 model: a726e82365a247db98a9895f1f611833
+🐟 Text: Hi Prince Derder! Welcome to our community. We're excited to have you here!
+🐟 Speech generated successfully with s1 model
+✅ Audio will be available at: https://41f2f210-ff37-43eb-b21e-3d704c6e79ff-00-wk9rqdg4rm6f.sisko.replit.dev/api/audio/690e531bd277f895064e3a07
+🎉 Audio generation completed for Prince Derder
+📨 Sending DM with audio to Prince Derder from creator user_JaBx79tOt0qf1 via support channel...
+📨 Sending message for creator user_JaBx79tOt0qf1
+🏢 Using company context: biz_MrwMXHH41fULEl
+🔍 Looking for existing support channel for user user_JaBx79tOt0qf1...
+📋 Listing support channels for company biz_MrwMXHH41fULEl...
+📋 Found 53 support channels
+📝 Creating new support channel for user_JaBx79tOt0qf1...
+❌ Failed to create support channel: UnprocessableEntityError: 422 {"error":{"message":"User has already been added to this feed","type":"unprocessable_entity"}}
+    at Function.generate (/home/runner/workspace/node_modules/@whop/sdk/src/core/error.ts:80:14)
+    at Whop.makeStatusError (/home/runner/workspace/node_modules/@whop/sdk/src/client.ts:440:28)
+    at Whop.makeRequest (/home/runner/workspace/node_modules/@whop/sdk/src/client.ts:659:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendAudioDM (/home/runner/workspace/server/routes.ts:195:28)
+    at async generateWelcomeAudio (/home/runner/workspace/server/routes.ts:373:27)
+    at async <anonymous> (/home/runner/workspace/server/routes.ts:2300:43) {
+  status: 422,
+  headers: Headers {
+    date: 'Fri, 07 Nov 2025 20:14:25 GMT',
+    'content-type': 'application/json; charset=utf-8',
+    'content-length': '94',
+    connection: 'keep-alive',
+    'cf-ray': '99af7f3169483e1b-BOM',
+    'cache-control': 'no-cache',
+    'referrer-policy': 'strict-origin-when-cross-origin',
+    'set-cookie': 'whop-core.user-id=; path=/; expires=Tue, 07 Nov 1995 20:14:25 GMT; secure; samesite=lax, __cf_bm=9vmhUy6NrPEwXgNRhXn07N05jqXlas1fHLFTehkNwmQ-1762546465-1.0.1.1-ruNvDAXgMmzAHgHTYWhc6g7UYoc7DPOiTq.6eWMgSXfazSmf30B4AHBVmsWwkWMFE0Od.1Syi0WzLP61jEaDn4n4iyyxYwlRz0SKl7cz1zY; path=/; expires=Fri, 07-Nov-25 20:44:25 GMT; domain=.whop.com; HttpOnly; Secure; SameSite=None',
+    'strict-transport-security': 'max-age=63072000; includeSubDomains',
+    vary: 'Accept, Origin',
+    'x-content-type-options': 'nosniff',
+    'x-frame-options': 'SAMEORIGIN',
+    'x-permitted-cross-domain-policies': 'none',
+    'x-request-id': 'a04423b0-983e-4666-9907-99231466a7a3',
+    'x-runtime': '0.138627',
+    'x-whop-is-investigating': 'false',
+    'x-xss-protection': '0',
+    'cf-cache-status': 'DYNAMIC',
+    server: 'cloudflare',
+    'alt-svc': 'h3=":443"; ma=86400'
+  },
+  error: {
+    error: {
+      message: 'User has already been added to this feed',
+      type: 'unprocessable_entity'
+    }
+  }
+}
+❌ Error sending DM via support channel: UnprocessableEntityError: 422 {"error":{"message":"User has already been added to this feed","type":"unprocessable_entity"}}
+    at Function.generate (/home/runner/workspace/node_modules/@whop/sdk/src/core/error.ts:80:14)
+    at Whop.makeStatusError (/home/runner/workspace/node_modules/@whop/sdk/src/client.ts:440:28)
+    at Whop.makeRequest (/home/runner/workspace/node_modules/@whop/sdk/src/client.ts:659:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendAudioDM (/home/runner/workspace/server/routes.ts:195:28)
+    at async generateWelcomeAudio (/home/runner/workspace/server/routes.ts:373:27)
+    at async <anonymous> (/home/runner/workspace/server/routes.ts:2300:43) {
+  status: 422,
+  headers: Headers {
+    date: 'Fri, 07 Nov 2025 20:14:25 GMT',
+    'content-type': 'application/json; charset=utf-8',
+    'content-length': '94',
+    connection: 'keep-alive',
+    'cf-ray': '99af7f3169483e1b-BOM',
+    'cache-control': 'no-cache',
+    'referrer-policy': 'strict-origin-when-cross-origin',
+    'set-cookie': 'whop-core.user-id=; path=/; expires=Tue, 07 Nov 1995 20:14:25 GMT; secure; samesite=lax, __cf_bm=9vmhUy6NrPEwXgNRhXn07N05jqXlas1fHLFTehkNwmQ-1762546465-1.0.1.1-ruNvDAXgMmzAHgHTYWhc6g7UYoc7DPOiTq.6eWMgSXfazSmf30B4AHBVmsWwkWMFE0Od.1Syi0WzLP61jEaDn4n4iyyxYwlRz0SKl7cz1zY; path=/; expires=Fri, 07-Nov-25 20:44:25 GMT; domain=.whop.com; HttpOnly; Secure; SameSite=None',
+    'strict-transport-security': 'max-age=63072000; includeSubDomains',
+    vary: 'Accept, Origin',
+    'x-content-type-options': 'nosniff',
+    'x-frame-options': 'SAMEORIGIN',
+    'x-permitted-cross-domain-policies': 'none',
+    'x-request-id': 'a04423b0-983e-4666-9907-99231466a7a3',
+    'x-runtime': '0.138627',
+    'x-whop-is-investigating': 'false',
+    'x-xss-protection': '0',
+    'cf-cache-status': 'DYNAMIC',
+    server: 'cloudflare',
+    'alt-svc': 'h3=":443"; ma=86400'
+  },
+  error: {
+    error: {
+      message: 'User has already been added to this feed',
+      type: 'unprocessable_entity'
+    }
+  }
+}
+❌ Error generating audio for Prince Derder: UnprocessableEntityError: 422 {"error":{"message":"User has already been added to this feed","type":"unprocessable_entity"}}
+    at Function.generate (/home/runner/workspace/node_modules/@whop/sdk/src/core/error.ts:80:14)
+    at Whop.makeStatusError (/home/runner/workspace/node_modules/@whop/sdk/src/client.ts:440:28)
+    at Whop.makeRequest (/home/runner/workspace/node_modules/@whop/sdk/src/client.ts:659:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendAudioDM (/home/runner/workspace/server/routes.ts:195:28)
+    at async generateWelcomeAudio (/home/runner/workspace/server/routes.ts:373:27)
+    at async <anonymous> (/home/runner/workspace/server/routes.ts:2300:43) {
+  status: 422,
+  headers: Headers {
+    date: 'Fri, 07 Nov 2025 20:14:25 GMT',
+    'content-type': 'application/json; charset=utf-8',
+    'content-length': '94',
+    connection: 'keep-alive',
+    'cf-ray': '99af7f3169483e1b-BOM',
+    'cache-control': 'no-cache',
+    'referrer-policy': 'strict-origin-when-cross-origin',
+    'set-cookie': 'whop-core.user-id=; path=/; expires=Tue, 07 Nov 1995 20:14:25 GMT; secure; samesite=lax, __cf_bm=9vmhUy6NrPEwXgNRhXn07N05jqXlas1fHLFTehkNwmQ-1762546465-1.0.1.1-ruNvDAXgMmzAHgHTYWhc6g7UYoc7DPOiTq.6eWMgSXfazSmf30B4AHBVmsWwkWMFE0Od.1Syi0WzLP61jEaDn4n4iyyxYwlRz0SKl7cz1zY; path=/; expires=Fri, 07-Nov-25 20:44:25 GMT; domain=.whop.com; HttpOnly; Secure; SameSite=None',
+    'strict-transport-security': 'max-age=63072000; includeSubDomains',
+    vary: 'Accept, Origin',
+    'x-content-type-options': 'nosniff',
+    'x-frame-options': 'SAMEORIGIN',
+    'x-permitted-cross-domain-policies': 'none',
+    'x-request-id': 'a04423b0-983e-4666-9907-99231466a7a3',
+    'x-runtime': '0.138627',
+    'x-whop-is-investigating': 'false',
+    'x-xss-protection': '0',
+    'cf-cache-status': 'DYNAMIC',
+    server: 'cloudflare',
+    'alt-svc': 'h3=":443"; ma=86400'
+  },
+  error: {
+    error: {
+      message: 'User has already been added to this feed',
+      type: 'unprocessable_entity'
+    }
+  }
+}
+❌ ADMIN: Error triggering welcome message: UnprocessableEntityError: 422 {"error":{"message":"User has already been added to this feed","type":"unprocessable_entity"}}
+    at Function.generate (/home/runner/workspace/node_modules/@whop/sdk/src/core/error.ts:80:14)
+    at Whop.makeStatusError (/home/runner/workspace/node_modules/@whop/sdk/src/client.ts:440:28)
+    at Whop.makeRequest (/home/runner/workspace/node_modules/@whop/sdk/src/client.ts:659:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendAudioDM (/home/runner/workspace/server/routes.ts:195:28)
+    at async generateWelcomeAudio (/home/runner/workspace/server/routes.ts:373:27)
+    at async <anonymous> (/home/runner/workspace/server/routes.ts:2300:43) {
+  status: 422,
+  headers: Headers {
+    date: 'Fri, 07 Nov 2025 20:14:25 GMT',
+    'content-type': 'application/json; charset=utf-8',
+    'content-length': '94',
+    connection: 'keep-alive',
+    'cf-ray': '99af7f3169483e1b-BOM',
+    'cache-control': 'no-cache',
+    'referrer-policy': 'strict-origin-when-cross-origin',
+    'set-cookie': 'whop-core.user-id=; path=/; expires=Tue, 07 Nov 1995 20:14:25 GMT; secure; samesite=lax, __cf_bm=9vmhUy6NrPEwXgNRhXn07N05jqXlas1fHLFTehkNwmQ-1762546465-1.0.1.1-ruNvDAXgMmzAHgHTYWhc6g7UYoc7DPOiTq.6eWMgSXfazSmf30B4AHBVmsWwkWMFE0Od.1Syi0WzLP61jEaDn4n4iyyxYwlRz0SKl7cz1zY; path=/; expires=Fri, 07-Nov-25 20:44:25 GMT; domain=.whop.com; HttpOnly; Secure; SameSite=None',
+    'strict-transport-security': 'max-age=63072000; includeSubDomains',
+    vary: 'Accept, Origin',
+    'x-content-type-options': 'nosniff',
+    'x-frame-options': 'SAMEORIGIN',
+    'x-permitted-cross-domain-policies': 'none',
+    'x-request-id': 'a04423b0-983e-4666-9907-99231466a7a3',
+    'x-runtime': '0.138627',
+    'x-whop-is-investigating': 'false',
+    'x-xss-protection': '0',
+    'cf-cache-status': 'DYNAMIC',
+    server: 'cloudflare',
+    'alt-svc': 'h3=":443"; ma=86400'
+  },
+  error: {
+    error: {
+      message: 'User has already been added to this feed',
+      type: 'unprocessable_entity'
+    }
+  }
+}
+8:14:25 PM [express] POST /api/admin/trigger-welcome 500 in 8164ms :: {"error":"422 {\"error\":{\"me…

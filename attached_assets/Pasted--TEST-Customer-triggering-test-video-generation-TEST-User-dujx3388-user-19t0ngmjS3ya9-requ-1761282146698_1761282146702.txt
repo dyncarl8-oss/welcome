@@ -1,0 +1,67 @@
+🧪 TEST: Customer triggering test video generation
+🧪 TEST: User dujx3388 (user_19t0ngmjS3ya9) requesting test video
+🧪 TEST: Using creator user_6SjB1Wo0chseh for video generation
+🧪 TEST: Found existing customer record for dujx3388
+🧪 TEST: Personalized script: Hi dujx3388! Welcome to our community. We're excited to have you here!
+🧪 TEST: Created video record 68fb07d6bbcdcdaf4cccb486
+🎥 Calling HeyGen Avatar IV API...
+🧪 TEST: Checking Fish Audio model 0a838e6f19084e50942d9cd041473a91...
+🐟 Getting Fish Audio model: 0a838e6f19084e50942d9cd041473a91
+🧪 TEST: Using Fish Audio TTS to generate personalized audio from script
+🐟 Generating speech with Fish Audio model: 0a838e6f19084e50942d9cd041473a91
+🐟 Text: Hi dujx3388! Welcome to our community. We're excited to have you here!
+📹 Polling: Found 1 video(s) being generated...
+⏳ Video 68fb07d6bbcdcdaf4cccb486 is new (4s old), waiting for HeyGen video ID...
+🐟 Speech generated successfully
+Uploading audio to HeyGen: fish-audio-1761282011069.mp3, size: 91951 bytes, type: audio/mp3
+HeyGen audio upload response status: 400
+HeyGen audio upload response body: {"code":400543,"message":"Content type not match audio/mp3 != audio/mpeg"}
+
+⚠️ Fish Audio TTS failed: Error: Content type not match audio/mp3 != audio/mpeg
+    at Object.uploadAudio (/home/runner/workspace/server/lib/heygen-sdk.ts:461:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async <anonymous> (/home/runner/workspace/server/routes.ts:2002:35)
+⚠️ Falling back to HeyGen TTS
+🧪 TEST: Using HeyGen text-to-speech
+📤 Sending to HeyGen FREE API (talking photo + text): {
+  "avatar_image_url": "https://4b85ba6b-4d21-4d8c-979f-4c1a0d11516c-00-3e4k7ghl44vds.sisko.replit.dev/uploads/avatars/avatar-68f676e569fe6de74e0bd137-1761280686283.png",
+  "input_text": "Hi dujx3388! Welcome to our community. We're excited to have you here!",
+  "voice_id": "1bd001e7e50f421d891986aad5158bc8",
+  "test": true,
+  "title": "Welcome video for dujx3388"
+}
+📁 Reading avatar from filesystem: /home/runner/workspace/uploads/avatars/avatar-68f676e569fe6de74e0bd137-1761280686283.png
+✅ Read 2004029 bytes from filesystem, type: image/png
+Fetched image buffer size: 2004029 bytes, type: image/png
+Uploading talking photo to HeyGen: avatar.jpg, size: 2004029 bytes, type: image/png
+Fetched user details: {"__typename":"PublicProfileUser","banner":null,"bio":null,"createdAt":1757349186,"phoneVerified":false,"userStat":{"__typename":"UserStat","moneyEarned24Hours":null,"moneyEarned30Days":null,"moneyEarned7Days":null,"moneyEarnedLifetime":null},"city":null,"country":null,"id":"user_6SjB1Wo0chseh","name":"alleyah","profilePicture":{"__typename":"OtherAttachment","sourceUrl":"https://img-v2-prod.whop.com/HNlBVXNM0gRFgpghyjAQcdNxPBk7BiZSNxLQeI2h4jE/resize:fill/width:80/height:80/enlarge:true/dpr:2/plain/https://content.whop.com/default_avatars/panda.png"},"username":"giducosalleyah"}
+User details: name="alleyah", username="giducosalleyah"
+📦 Retrieved company ID from experience: biz_EfM4YDzQmtSt1P
+Sending validate-access response: {"hasAccess":true,"accessLevel":"admin","userId":"user_6SjB1Wo0chseh","userName":"alleyah","username":"giducosalleyah","companyId":"biz_EfM4YDzQmtSt1P"}
+5:00:13 AM [express] POST /api/validate-access 200 in 1999ms :: {"hasAccess":true,"accessLevel":"adm…
+5:00:13 AM [express] GET /api/admin/creator 304 in 130ms :: {"_id":"68f676e569fe6de74e0bd137","whopU…
+📊 Fetching customers for creator 68f676e569fe6de74e0bd137 (company: biz_EfM4YDzQmtSt1P)
+📊 Fetching members for company: biz_EfM4YDzQmtSt1P
+5:00:15 AM [express] GET /api/admin/customers 200 in 1057ms :: {"customers":[{"_id":"68f7632b32da65b…
+✅ Fetched 35 members from Whop API for company biz_EfM4YDzQmtSt1P
+5:00:16 AM [express] GET /api/admin/analytics 200 in 2027ms :: {"totalCustomers":35,"newMembersThisW…
+HeyGen talking photo upload response status: 200
+HeyGen talking photo upload response body: {"code":100,"data":{"talking_photo_id":"892df42c90a545c0be3e39153f1a1435","talking_photo_url":"https://files2.heygen.ai/prod/movio/url_upload/user_upload/7d62570070314e6abc05c91603dcb9a2/5c4f7ab20cf04ead977eaf854d69da4c.image/png?Expires=1761886816&Signature=SrP-cdjafx7Y0CvYdUao38B8BqS6lp02OPd2ZDFoV-0ve6RCkztY0Kf6u~S~xr8RGFhcuWbEWfxTHwkrC9BWOlHNodctOCvZbjJIYtCgzeaGIi7fh5zKqliNGfeXbWC8EdmvZh3M7QoL8kpoFrfGAuJUNVsCi1rE6c2EMWzQVLCiBtVBIGfPzMhzQ2saMBfKK1DMCaeNLagCcH77~qA1YgZ5aKy4kVR3FYV~cvvRI-Y63AJNIIECgg52KCidUPFNH9BVUF2EuK7lsr-23nlsJAiz2efRb-6C-Jfa958MdDVVtpY8hvbmx3YzGe9TkruyvMPlO10HMwhxhFOUwEIm0g__&Key-Pair-Id=K38HBHX5LX3X2H"},"msg":null,"message":null}
+✅ Talking photo uploaded with ID: 892df42c90a545c0be3e39153f1a1435
+📥 HeyGen FREE API response: {
+  "error": null,
+  "data": {
+    "video_id": "e5da5a7f93744008b73edf64c9818d54"
+  }
+}
+✅ HeyGen video generation started! Video ID: e5da5a7f93744008b73edf64c9818d54
+5:00:18 AM [express] POST /api/customer/trigger-test-video 200 in 13438ms :: {"success":true,"messag…
+5:00:19 AM [express] GET /api/customer/welcome-status 200 in 683ms :: {"hasWelcomeVideo":true,"video…
+📹 Polling: Found 1 video(s) being generated...
+📹 Video e5da5a7f93744008b73edf64c9818d54 status: processing
+📹 Polling: Found 1 video(s) being generated...
+📹 Video e5da5a7f93744008b73edf64c9818d54 status: completed
+✅ Video e5da5a7f93744008b73edf64c9818d54 is complete! URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/7d62570070314e6abc05c91603dcb9a2/e5da5a7f93744008b73edf64c9818d54.mp4?Expires=1761886871&Signature=QFC8W42sIDY9ShRPyqxvJurcLkdto1YxYy6GPrWa7XZVtEP40k2gnIbBoEgziLtvqIajTXvaS5TmINBycMuVTbHYkyh9vWM4brAV3o~dmd-6YjnHAB7BTNwiG-56C5~nf6EImj5ep27F0wBhGHCYAXSCTJbwOQS~~JC93wJRUiuwV~Unb4N~nd~~LgFsIxvNpaM9mOh2wqUxZFt2R4ScFAJ~wyGihtlvWJacqe5eDOLagN1-X2PrHWlxBqsnaD-R3HGitHOUhXjy5On~g10MGCtD5914yz8biTLS6cBje-7XAVqHyUP8x4-zSy6cknkr2NqjrElXjCuhIaX15S~bsg__&Key-Pair-Id=K38HBHX5LX3X2H
+📤 Sending DM to user user_19t0ngmjS3ya9...
+✅ Message sent successfully to dujx3388! Message ID: post_1CURSD7w8LAnospK8y8x1a
+🎉 Video e5da5a7f93744008b73edf64c9818d54 successfully sent to dujx3388

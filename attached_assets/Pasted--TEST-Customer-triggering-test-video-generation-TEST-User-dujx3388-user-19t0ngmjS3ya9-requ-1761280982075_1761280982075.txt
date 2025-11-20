@@ -1,0 +1,43 @@
+🧪 TEST: Customer triggering test video generation
+🧪 TEST: User dujx3388 (user_19t0ngmjS3ya9) requesting test video
+🧪 TEST: Using creator user_6SjB1Wo0chseh for video generation
+🧪 TEST: Found existing customer record for dujx3388
+🧪 TEST: Personalized script: Hi dujx3388! Welcome to our community. We're excited to have you here!
+🧪 TEST: Created video record 68fb03af4da77be50b3e7cb1
+🎥 Calling HeyGen Avatar IV API...
+🧪 TEST: Using FREE API with audio file
+📤 Sending to HeyGen FREE API (talking photo + audio): {
+  "avatar_image_url": "https://4b85ba6b-4d21-4d8c-979f-4c1a0d11516c-00-3e4k7ghl44vds.sisko.replit.dev/uploads/avatars/avatar-68f676e569fe6de74e0bd137-1761280686283.png",
+  "input_audio_url": "https://resource2.heygen.ai/audio/e1c78f7de9b74e36820ac8a04da65cac/original",
+  "test": true,
+  "title": "Welcome video for dujx3388"
+}
+📁 Reading avatar from filesystem: /home/runner/workspace/uploads/avatars/avatar-68f676e569fe6de74e0bd137-1761280686283.png
+✅ Read 2004029 bytes from filesystem, type: image/png
+Fetched image buffer size: 2004029 bytes, type: image/png
+Uploading talking photo to HeyGen: avatar.jpg, size: 2004029 bytes, type: image/png
+HeyGen talking photo upload response status: 200
+HeyGen talking photo upload response body: {"code":100,"data":{"talking_photo_id":"f545e629d9f9473694e94d78aefae5e0","talking_photo_url":"https://files2.heygen.ai/prod/movio/url_upload/user_upload/7d62570070314e6abc05c91603dcb9a2/c1ec46e2b10245f79fd015fe876a358c.image/png?Expires=1761885748&Signature=g3VoPWMVgOTBK8Aw1JI-RMUvZ6dr8r6lPYzlNJOxUcQEuwPnDdtu-g6JTFODdejdQCfw9rp6-7bTxt8jQCA9Lc72J1js5SPfael6NMXd~wIM2a5dEVOBTQMe1IxpxTYCr9dHr~3677xqrsIyol7OoJ~m8Xd0LJEtKNaS09mg9A9LdOHamPD-TfoqZbvjCURBGR13giujlc7lxs9hCoFrOTrIjLQQD9ng3PnLSOc~9ZGF3y0j0p9XAmQYFTywQLRALRlZxPw54Zitb9x5dIdhCBDg8BUZthX7D46xqoJKVpwSEx42NMsufHCIv1aMiY5z23qf8VNElothPiUsdesb-g__&Key-Pair-Id=K38HBHX5LX3X2H"},"msg":null,"message":null}
+✅ Talking photo uploaded with ID: f545e629d9f9473694e94d78aefae5e0
+📹 Polling: Found 1 video(s) being generated...
+⚠️ Video 68fb03af4da77be50b3e7cb1 has no HeyGen video ID, marking as failed...
+📥 HeyGen FREE API response: {
+  "error": null,
+  "data": {
+    "video_id": "bd8653c934154603b86b15b1dfd5a342"
+  }
+}
+✅ HeyGen video generation started! Video ID: bd8653c934154603b86b15b1dfd5a342
+4:42:29 AM [express] POST /api/customer/trigger-test-video 200 in 7357ms :: {"success":true,"message…
+4:42:30 AM [express] GET /api/customer/welcome-status 304 in 727ms :: {"hasWelcomeVideo":false,"vide…
+Fetched user details: {"__typename":"PublicProfileUser","banner":null,"bio":null,"createdAt":1757349186,"phoneVerified":false,"userStat":{"__typename":"UserStat","moneyEarned24Hours":null,"moneyEarned30Days":null,"moneyEarned7Days":null,"moneyEarnedLifetime":null},"city":null,"country":null,"id":"user_6SjB1Wo0chseh","name":"alleyah","profilePicture":{"__typename":"OtherAttachment","sourceUrl":"https://img-v2-prod.whop.com/HNlBVXNM0gRFgpghyjAQcdNxPBk7BiZSNxLQeI2h4jE/resize:fill/width:80/height:80/enlarge:true/dpr:2/plain/https://content.whop.com/default_avatars/panda.png"},"username":"giducosalleyah"}
+User details: name="alleyah", username="giducosalleyah"
+📦 Retrieved company ID from experience: biz_EfM4YDzQmtSt1P
+Sending validate-access response: {"hasAccess":true,"accessLevel":"admin","userId":"user_6SjB1Wo0chseh","userName":"alleyah","username":"giducosalleyah","companyId":"biz_EfM4YDzQmtSt1P"}
+4:42:34 AM [express] POST /api/validate-access 200 in 1138ms :: {"hasAccess":true,"accessLevel":"adm…
+4:42:35 AM [express] GET /api/admin/creator 304 in 109ms :: {"_id":"68f676e569fe6de74e0bd137","whopU…
+📊 Fetching customers for creator 68f676e569fe6de74e0bd137 (company: biz_EfM4YDzQmtSt1P)
+📊 Fetching members for company: biz_EfM4YDzQmtSt1P
+4:42:36 AM [express] GET /api/admin/customers 200 in 995ms :: {"customers":[{"_id":"68f7632b32da65b0…
+✅ Fetched 35 members from Whop API for company biz_EfM4YDzQmtSt1P
+4:42:37 AM [express] GET /api/admin/analytics 200 in 2108ms :: {"totalCustomers":35,"newMembersThisW…
