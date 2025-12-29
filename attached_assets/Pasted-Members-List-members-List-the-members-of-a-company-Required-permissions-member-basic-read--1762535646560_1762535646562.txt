@@ -1,0 +1,161 @@
+Members
+List members
+List the members of a company
+
+Required permissions:
+
+member:basic:read
+member:email:read
+member:phone:read
+GET
+/
+members
+
+Try it
+Authorizations
+​
+Authorization
+stringheaderrequired
+The app API key from an app from the /dashboard/developer page
+
+Query Parameters
+​
+after
+string | null
+Returns the elements in the list that come after the specified cursor.
+
+​
+before
+string | null
+Returns the elements in the list that come before the specified cursor.
+
+​
+first
+integer | null
+Returns the first n elements from the list.
+
+Example:
+42
+
+​
+last
+integer | null
+Returns the last n elements from the list.
+
+Example:
+42
+
+​
+company_id
+stringrequired
+The ID of the company to list members for
+
+Example:
+"biz_xxxxxxxxxxxxxx"
+
+​
+direction
+enum<string> | null
+The direction to sort the members by
+The direction of the sort.
+
+Available options: asc, desc 
+​
+order
+enum<string> | null
+The order to sort the members by
+Which columns can be used to sort.
+
+Available options: id, usd_total_spent, created_at, joined_at, most_recent_action 
+​
+created_before
+string<date-time> | null
+The maximum creation date to filter by
+
+Example:
+"2023-12-01T05:00:00.401Z"
+
+​
+created_after
+string<date-time> | null
+The minimum creation date to filter by
+
+Example:
+"2023-12-01T05:00:00.401Z"
+
+​
+access_level
+enum<string> | null
+The access level to filter the members by
+The access level a given user (or company) has to a product or company.
+
+Available options: no_access, admin, customer 
+​
+product_ids
+string[] | null
+The product IDs to filter the members by
+
+Represents a unique identifier that is Base64 obfuscated. It is often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as "VXNlci0xMA==") or integer (such as 4) input value will be accepted as an ID.
+
+​
+plan_ids
+string[] | null
+The plan IDs to filter the members by
+
+Represents a unique identifier that is Base64 obfuscated. It is often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as "VXNlci0xMA==") or integer (such as 4) input value will be accepted as an ID.
+
+​
+user_ids
+string[] | null
+The user IDs to filter the members by
+
+Represents a unique identifier that is Base64 obfuscated. It is often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as "VXNlci0xMA==") or integer (such as 4) input value will be accepted as an ID.
+
+​
+statuses
+enum<string>[] | null
+The statuses to filter the members by
+
+Show child attributes
+
+​
+promo_code_ids
+string[] | null
+The promo code IDs to filter the members by
+
+Represents a unique identifier that is Base64 obfuscated. It is often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as "VXNlci0xMA==") or integer (such as 4) input value will be accepted as an ID.
+
+​
+most_recent_actions
+enum<string>[] | null
+The most recent actions to filter the members by
+
+Show child attributes
+
+​
+query
+string | null
+The name, username, or email to filter the members by. The email filter will only apply if the current actor has the member:email:read permission.
+
+Response
+
+200
+
+application/json
+A successful response
+
+The connection type for CompanyMember.
+
+​
+data
+object[]required
+A list of nodes.
+
+Show child attributes
+
+​
+page_info
+objectrequired
+Information to aid in pagination.
+
+Show child attributes

@@ -1,0 +1,29 @@
+💳 Processing purchase success for user user_JaBx79tOt0qf1, plan: plan_LjcBBl26IpAtD
+✅ Updated creator user_JaBx79tOt0qf1 to tier200 plan with 200 credits
+11:40:37 AM [express] POST /api/admin/purchase-success 200 in 703ms :: {"success":true,"planType":"ti…
+🔍 Checking memberships for user user_JaBx79tOt0qf1 in company biz_MrwMXHH41fULEl
+🔍 Checking memberships for user user_JaBx79tOt0qf1 in company biz_MrwMXHH41fULEl
+📊 Found 9 total memberships for this user
+🎯 Filtered to 3 memberships for our plans: plan_LjcBBl26IpAtD, plan_09xW7Ra2D5jDO
+  - Membership mem_2FXrJr3PVoxswE: plan=plan_LjcBBl26IpAtD, status=drafted, cancel_at_period_end=false
+  - Membership mem_wCAIyboBJyMZo9: plan=plan_LjcBBl26IpAtD, status=active, cancel_at_period_end=true
+  - Membership mem_QA4g29BPKaJHhE: plan=plan_LjcBBl26IpAtD, status=active, cancel_at_period_end=false
+✅ Found our plan membership: mem_wCAIyboBJyMZo9
+   Status: active
+   Cancel at period end: true
+🎯 Cancellation check result: CANCELLED
+   Creator's current plan type: tier200
+⬇️ DOWNGRADING creator 690c2a286178e2e4c23ae140 to free plan (50 credits)
+📊 Found 9 total memberships for this user
+🎯 Filtered to 3 memberships for our plans: plan_LjcBBl26IpAtD, plan_09xW7Ra2D5jDO
+  - Membership mem_2FXrJr3PVoxswE: plan=plan_LjcBBl26IpAtD, status=drafted, cancel_at_period_end=false
+  - Membership mem_wCAIyboBJyMZo9: plan=plan_LjcBBl26IpAtD, status=active, cancel_at_period_end=true
+  - Membership mem_QA4g29BPKaJHhE: plan=plan_LjcBBl26IpAtD, status=active, cancel_at_period_end=false
+✅ Found our plan membership: mem_wCAIyboBJyMZo9
+   Status: active
+   Cancel at period end: true
+🎯 Cancellation check result: CANCELLED
+   Creator's current plan type: tier200
+⬇️ DOWNGRADING creator 690c2a286178e2e4c23ae140 to free plan (50 credits)
+11:40:40 AM [express] GET /api/admin/credits 200 in 2435ms :: {"credits":50,"planType":"free","planNa…
+11:40:40 AM [express] GET /api/admin/creator 200 in 2787ms :: {"_id":"690c2a286178e2e4c23ae140","whop…

@@ -1,0 +1,38 @@
+🧪 TEST: Customer triggering test audio generation
+🧪 TEST: User dujx3388 (user_19t0ngmjS3ya9) requesting test audio
+🧪 TEST: Using creator user_6SjB1Wo0chseh for audio generation
+🧪 TEST: Found existing customer record for dujx3388
+🧪 TEST: Personalized script: Hey dujx3388! This is Prince from Test company, Welcome to our community dujx3388! . We're excited to have you here! Finally this is working! I promise i will crushed that fucking kartik guy!
+🎵 Starting audio generation for dujx3388
+✅ Created audio message record for dujx3388
+🐟 Checking Fish Audio model 51cee235ee474edd850300b8c38d3f36...
+🐟 Getting Fish Audio model: 51cee235ee474edd850300b8c38d3f36
+🐟 Generating speech with Fish Audio for dujx3388
+🐟 Generating speech with Fish Audio model: 51cee235ee474edd850300b8c38d3f36
+🐟 Text: Hey dujx3388! This is Prince from Test company, Welcome to our community dujx3388! . We're excited t...
+🐟 Speech generated successfully
+🎉 Audio generation completed for dujx3388
+📨 Sending DM with audio attachment to dujx3388...
+📤 Uploading audio file to Whop...
+❌ Error sending DM with audio attachment: Error: Failed to prepare file
+    at Object.prepareAttachmentForUpload (/home/runner/workspace/node_modules/@whop/api/src/attachments/prepare.ts:47:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.uploadAttachment (/home/runner/workspace/node_modules/@whop/api/src/attachments/upload.ts:143:7)
+    at async sendAudioDM (/home/runner/workspace/server/routes.ts:25:28)
+    at async generateWelcomeAudio (/home/runner/workspace/server/routes.ts:134:27)
+    at async <anonymous> (/home/runner/workspace/server/routes.ts:1422:43)
+❌ Error generating audio for dujx3388: Error: Failed to prepare file
+    at Object.prepareAttachmentForUpload (/home/runner/workspace/node_modules/@whop/api/src/attachments/prepare.ts:47:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.uploadAttachment (/home/runner/workspace/node_modules/@whop/api/src/attachments/upload.ts:143:7)
+    at async sendAudioDM (/home/runner/workspace/server/routes.ts:25:28)
+    at async generateWelcomeAudio (/home/runner/workspace/server/routes.ts:134:27)
+    at async <anonymous> (/home/runner/workspace/server/routes.ts:1422:43)
+❌ Error triggering test audio: Error: Failed to prepare file
+    at Object.prepareAttachmentForUpload (/home/runner/workspace/node_modules/@whop/api/src/attachments/prepare.ts:47:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.uploadAttachment (/home/runner/workspace/node_modules/@whop/api/src/attachments/upload.ts:143:7)
+    at async sendAudioDM (/home/runner/workspace/server/routes.ts:25:28)
+    at async generateWelcomeAudio (/home/runner/workspace/server/routes.ts:134:27)
+    at async <anonymous> (/home/runner/workspace/server/routes.ts:1422:43)
+12:57:59 PM [express] POST /api/customer/trigger-test-audio 500 in 9256ms :: {"error":"Failed to prep…

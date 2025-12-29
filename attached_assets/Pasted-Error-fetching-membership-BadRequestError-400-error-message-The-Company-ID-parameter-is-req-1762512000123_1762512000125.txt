@@ -1,0 +1,38 @@
+Error fetching membership: BadRequestError: 400 {"error":{"message":"The Company ID parameter is required","type":"bad_request"}}
+    at Function.generate (/home/runner/workspace/node_modules/@whop/sdk/src/core/error.ts:60:14)
+    at Whop.makeStatusError (/home/runner/workspace/node_modules/@whop/sdk/src/client.ts:440:28)
+    at Whop.makeRequest (/home/runner/workspace/node_modules/@whop/sdk/src/client.ts:659:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async PagePromise.[Symbol.asyncIterator] (/home/runner/workspace/node_modules/@whop/sdk/src/core/pagination.ts:103:18)
+    at async <anonymous> (/home/runner/workspace/server/routes.ts:1369:24) {
+  status: 400,
+  headers: Headers {
+    date: 'Fri, 07 Nov 2025 10:37:55 GMT',
+    'content-type': 'application/json; charset=utf-8',
+    'content-length': '81',
+    connection: 'keep-alive',
+    'cf-ray': '99ac32b71990f01d-BOM',
+    'cache-control': 'no-cache',
+    'referrer-policy': 'strict-origin-when-cross-origin',
+    'set-cookie': 'whop-core.user-id=; path=/; expires=Tue, 07 Nov 1995 10:37:55 GMT; secure; samesite=lax, __cf_bm=P70IudcQ_6WB4ntt8HHxsifOiRAvrcmbcCW_ExdeC2s-1762511875-1.0.1.1-u8rctGhB5Zutu1CMTsf1wLhWgmekEiCzcH5X5aBOqCwGFZ5HFWD.Zc_.AFYxdRoHc6IJckBdLaB4QZCUw8x5yyVNwqUznwpVwWEXvAFdixg; path=/; expires=Fri, 07-Nov-25 11:07:55 GMT; domain=.whop.com; HttpOnly; Secure; SameSite=None',
+    'strict-transport-security': 'max-age=63072000; includeSubDomains',
+    vary: 'Accept, Origin',
+    'x-content-type-options': 'nosniff',
+    'x-frame-options': 'SAMEORIGIN',
+    'x-permitted-cross-domain-policies': 'none',
+    'x-request-id': '9a8b5d52-faee-4ef2-a227-1bdf8fcee8be',
+    'x-runtime': '0.009381',
+    'x-whop-is-investigating': 'false',
+    'x-xss-protection': '0',
+    'cf-cache-status': 'DYNAMIC',
+    server: 'cloudflare',
+    'alt-svc': 'h3=":443"; ma=86400'
+  },
+  error: {
+    error: {
+      message: 'The Company ID parameter is required',
+      type: 'bad_request'
+    }
+  }
+}
+10:37:56 AM [express] GET /api/admin/membership 500 in 454ms :: {"error":"Failed to fetch membership"}

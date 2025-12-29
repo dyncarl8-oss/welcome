@@ -1,0 +1,35 @@
+🎵 NEW MEMBER VISIT: maksx (@fxncjwz, user_5n7UyVTJ9zlr7) - auto-generating welcome audio
+✅ Created customer record for maksx under creator 6901a53fbb29fbdb9f408058
+🎵 Starting audio generation for maksx
+7:00:51 AM [express] GET /api/customer/welcome-status 200 in 1452ms :: {"hasWelcomeMessage":false,"m…
+✅ Created audio message record for maksx
+🐟 Checking Fish Audio model 54fcb45fa35c4e39bf9e46923df50375...
+🐟 Getting Fish Audio model: 54fcb45fa35c4e39bf9e46923df50375
+🐟 Generating speech with Fish Audio for maksx
+🐟 Generating speech with Fish Audio model: 54fcb45fa35c4e39bf9e46923df50375
+🐟 Text: Hi maksx! Welcome to our community. We're excited to have you here!
+🐟 Speech generated successfully
+✅ Audio will be available at: https://fc4ce029-5f3b-47fe-92fb-c1e1bb67ba06-00-2g1qnzfphttog.sisko.replit.dev/api/audio/6901bba3c8f42ac795d824bf
+🎉 Audio generation completed for maksx
+📨 Sending DM with audio to maksx from creator user_JaBx79tOt0qf1 via support channel...
+📨 Sending message for creator user_JaBx79tOt0qf1
+🏢 Using company context: biz_MrwMXHH41fULEl
+🔍 Looking for existing support channel for user user_5n7UyVTJ9zlr7...
+⚠️ Could not list support channels: 
+📝 Creating new support channel for user_5n7UyVTJ9zlr7...
+❌ Failed to create support channel: Error: Failed to create support channel: 404 
+    at sendAudioDM (/home/runner/workspace/server/routes.ts:93:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async generateWelcomeAudio (/home/runner/workspace/server/routes.ts:224:27)
+❌ Error sending DM via support channel: Error: Failed to create support channel: 404 
+    at sendAudioDM (/home/runner/workspace/server/routes.ts:93:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async generateWelcomeAudio (/home/runner/workspace/server/routes.ts:224:27)
+❌ Error generating audio for maksx: Error: Failed to create support channel: 404 
+    at sendAudioDM (/home/runner/workspace/server/routes.ts:93:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async generateWelcomeAudio (/home/runner/workspace/server/routes.ts:224:27)
+Error generating welcome audio: Error: Failed to create support channel: 404 
+    at sendAudioDM (/home/runner/workspace/server/routes.ts:93:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async generateWelcomeAudio (/home/runner/workspace/server/routes.ts:224:27)

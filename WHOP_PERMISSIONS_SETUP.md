@@ -1,0 +1,201 @@
+# Whop Permissions Setup Guide for AutoWelcome AI
+
+This guide will help you configure the required permissions for your AutoWelcome AI app to work properly with Whop.
+
+## ⚠️ IMPORTANT: Only Request Necessary Permissions
+
+**Do NOT add any permissions beyond those listed in this guide.** Extra permissions will cause your app to be rejected during Whop's review process. Only request the minimal permissions needed for the app to function.
+
+## Why Permissions Are Required
+
+AutoWelcome AI needs specific permissions to:
+- Detect when new members join your community (via webhooks)
+- Read member information to personalize videos
+- Send DMs to members with their welcome videos
+- Access your company and product information
+
+## Required Permissions
+
+Your app needs **ONLY** the following Whop OAuth permissions:
+
+### 1. **`membership:read`** ✅
+- **Why**: To read membership data when webhooks fire and detect new members
+- **Justification**: "To detect when new members join and trigger personalized welcome videos"
+
+### 2. **`user:read`** ✅
+- **Why**: To fetch user details (name, username, etc.) for personalization
+- **Justification**: "To personalize video messages with member names and details"
+
+### 3. **`message:write`** ⭐ CRITICAL
+- **Why**: To send DMs to customers with their welcome videos
+- **Justification**: "To automatically send personalized welcome videos via DM"
+- **Note**: Without this permission, videos will generate but won't be delivered!
+
+### 4. **`company:read`** ✅
+- **Why**: To identify the creator and customize welcome messages
+- **Justification**: "To identify the creator and customize welcome messages"
+
+**Note about Products API**: The Products API does NOT require any OAuth permission. It uses your app API key directly in the Authorization header. Products are fetched using your API key, not OAuth scopes
+
+---
+
+## ❌ Permissions You Should NOT Request
+
+**Do NOT add these permissions** - they are not needed for this app and will cause rejection:
+
+- ❌ `product:read` - **DOES NOT EXIST** - Products API uses app API key only
+- ❌ `access_pass:basic:read` - Not needed (this is for a different API)
+- ❌ `developer:manage_webhook` - Not needed (webhooks work without this)
+- ❌ `support_chat:create` - Not needed for this app
+- ❌ `support_chat:read` - Not needed for this app
+- ❌ `member:basic:export` - Not needed for this app
+- ❌ `member:manage` - Not needed for this app
+- ❌ `member:stats:export` - Not needed for this app
+- ❌ `member:stats:read` - Not needed for this app
+- ❌ `chat:read` - Not tied to any feature
+- ❌ `member:phone:read` - Not tied to any feature
+- ❌ `member:email:read` - Not tied to any feature
+
+**Remember**: Only request the 4 OAuth permissions listed above. Adding extra permissions will result in app store rejection.
+
+---
+
+## Step-by-Step Setup Instructions
+
+### Step 1: Go to Developer Dashboard
+
+1. Visit: https://whop.com/dashboard/developer
+2. Select your **AutoWelcome AI** app (or the app you created)
+3. Click on the **"Permissions"** tab
+
+![Permissions Tab](https://mintcdn.com/whop/CTin6M1qeROeLXJs/images/app-permissions-settings.png)
+
+### Step 2: Add Required Permissions
+
+1. Click **"Add permissions"** button
+2. Select ALL of these permissions:
+   - ✅ `membership:read`
+   - ✅ `user:read`
+   - ✅ `message:write`
+   - ✅ `company:read`
+3. Click **"Add"**
+
+**DO NOT** add `product:read` - it does not exist as an OAuth permission!
+
+### Step 3: Configure Each Permission
+
+For each permission you added, you need to:
+
+1. Write a **justification** (why your app needs it)
+2. Choose whether it's **required** or **optional**
+
+Use these justifications:
+
+| Permission | Justification | Required? |
+|------------|---------------|-----------|
+| `membership:read` | "To detect when new members join and trigger personalized welcome videos" | ✅ Required |
+| `user:read` | "To personalize video messages with member names and details" | ✅ Required |
+| `message:write` | "To automatically send personalized welcome videos via DM" | ✅ Required |
+| `company:read` | "To identify the creator and customize welcome messages" | ✅ Required |
+
+![Permission Justification](https://mintcdn.com/whop/CTin6M1qeROeLXJs/images/app-permissions-settings-justification.png)
+
+### Step 4: Save Your Permissions
+
+1. Review all permissions
+2. Click **"Save"** button
+3. Confirm the changes
+
+![Save Permissions](https://mintcdn.com/whop/CTin6M1qeROeLXJs/images/app-permissions-settings-save.png)
+
+### Step 5: Install/Re-approve Your App
+
+After configuring permissions, you need to install (or re-approve) the app:
+
+1. Visit: `https://whop.com/apps/YOUR_APP_ID/install`
+   - Replace `YOUR_APP_ID` with your actual app ID (e.g., `app_xxxxxxxxx`)
+2. Select your company
+3. **Review and approve ALL permissions**
+
+![Permission Approval Screen](https://mintcdn.com/whop/CTin6M1qeROeLXJs/images/app-permissions-oauth.png)
+
+---
+
+## For Multi-Tenant Use (Other Creators)
+
+When other creators install your AutoWelcome AI app on their Whop companies:
+
+1. They will see the same permissions approval screen
+2. They must approve ALL required permissions
+3. Each creator gets their own isolated setup:
+   - Their own admin dashboard
+   - Their own avatar/settings
+   - Their own customer list
+   - Videos sent from their account to their members
+
+---
+
+## Troubleshooting
+
+### Problem: Videos generate but don't send via DM
+
+**Solution**: Check if `message:write` permission is approved
+- Go to: https://whop.com/dashboard/settings/authorized-apps
+- Find your AutoWelcome AI app
+- Verify `message:write` is checked
+- If not, click **"Re-approve"**
+
+### Problem: "Permission denied" or "Unauthorized" errors
+
+**Solution**: 
+1. Go to Developer Dashboard → Permissions
+2. Verify all 4 OAuth permissions are added (membership:read, user:read, message:write, company:read)
+3. Re-install/re-approve the app
+
+### Problem: Webhooks receive events but nothing happens
+
+**Solution**:
+1. Check that `membership:read` permission is approved
+2. Verify webhook is set to receive `membership.went_valid` events
+3. Check the app logs for detailed error messages
+
+---
+
+## API Endpoints and Required Permissions/Auth
+
+| Endpoint | Required Auth Method | Notes |
+|----------|---------------------|-------|
+| `/api/v5/messages` (Create DM) | OAuth: `message:write` | OAuth permission |
+| `/users/:userId` (Get user details) | OAuth: `user:read` | OAuth permission |
+| `/memberships/:id` (Get membership) | OAuth: `membership:read` | OAuth permission |
+| `/companies/:id` (Get company) | OAuth: `company:read` | OAuth permission |
+| `/products?company_id=X` (List products) | **App API Key Only** | NO OAuth permission needed! |
+| `/products/:id` (Get product) | **App API Key Only** | NO OAuth permission needed! |
+
+**Important Note About Products API:**
+The Products API does NOT use OAuth permissions. It only requires your app API key in the Authorization header:
+```
+Authorization: Bearer YOUR_APP_API_KEY
+```
+
+If you see an error about `access_pass:basic:read`, you're using the SDK's automatic iteration method incorrectly. Use direct fetch with your API key and `company_id` parameter instead.
+
+---
+
+## Need Help?
+
+If you're still having issues:
+
+1. Check the console logs for permission-related errors
+2. Verify all environment variables are set correctly
+3. Test the webhook endpoint manually
+4. Contact Whop support if permissions aren't working
+
+---
+
+## Important Notes
+
+- ⚠️ All permissions must be approved for the app to work fully
+- ⚠️ If you add new permissions later, creators will need to re-approve
+- ⚠️ Handle permission errors gracefully in your code
+- ✅ The app will show helpful error messages if permissions are missing

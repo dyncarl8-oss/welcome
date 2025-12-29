@@ -1,0 +1,30 @@
+im the app owner, it uses my name when sending the dm on my members, but for other admins, their customer get the message from "Chess agent" (my agent) cause i think its using my own WHOP_API_KEY or NEXT_PUBLIC_WHOP_APP_ID
+
+i mean i have all these in my whop dashboard:
+WHOP_API_KEY=Dj45LRtXbrLWfSFKjTHjMSY32GlAoSYFmW30P-m6rSs
+NEXT_PUBLIC_WHOP_APP_ID=app_PDHgUDWHtzS0oa
+NEXT_PUBLIC_WHOP_AGENT_USER_ID=user_v8Ceu9HT4DPB1
+NEXT_PUBLIC_WHOP_COMPANY_ID=biz_EfM4YDzQmtSt1P
+
+but were not adding the nextpublic agent user id in my secret, so i dont think its using this, and we didnt add company id also cause we lready auto retreive the company of the creator, but the message received by the member of other creators is coming from my own agent
+
+like how can we maybe detect it automaticall, i think this dont work, i asked and it says:
+
+how to detect other admin/creator their own app agent? like how do i retreive their agent on their behalf?
+
+Searched admin creator app agent retrieve on behalf
+
+Searched app agent retrieve company installation API key bearer token
+
+Searched app installation company API key bearer token on behalf of creator admin
+Based on the documentation, when your app is installed on a company, you use your app's API key with the Bearer token to make API calls on behalf of that company. Here's how it works:
+
+Use your app's API key: When making API calls, authenticate with your app's API key (found in your developer dashboard) in the Authorization header: Bearer YOUR_API_KEY
+
+Pass the company ID: For most API calls, you specify which company you're acting on behalf of by passing their company_id parameter (looks like biz_xxxxx)
+
+Request permissions: Your app must have the required permissions granted by the company admin during installation. Each API endpoint documents its required permissions.
+
+No separate "agent" retrieval needed: You don't retrieve a separate agent or token for each company. Your single app API key works across all companies that have installed your app, as long as you have the proper permissions.
+
+Want to learn more? These pages may help:

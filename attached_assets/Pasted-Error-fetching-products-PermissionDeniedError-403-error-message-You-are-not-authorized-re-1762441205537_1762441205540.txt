@@ -1,0 +1,39 @@
+Error fetching products: PermissionDeniedError: 403 {"error":{"message":"You are not authorized - requires: 'access_pass:basic:read'","type":"forbidden"}}
+    at Function.generate (/home/runner/workspace/node_modules/@whop/sdk/src/core/error.ts:68:14)
+    at Whop.makeStatusError (/home/runner/workspace/node_modules/@whop/sdk/src/client.ts:440:28)
+    at Whop.makeRequest (/home/runner/workspace/node_modules/@whop/sdk/src/client.ts:659:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async PagePromise.[Symbol.asyncIterator] (/home/runner/workspace/node_modules/@whop/sdk/src/core/pagination.ts:103:18)
+    at async <anonymous> (/home/runner/workspace/server/routes.ts:1772:26) {
+  status: 403,
+  headers: Headers {
+    date: 'Thu, 06 Nov 2025 14:55:47 GMT',
+    'content-type': 'application/json; charset=utf-8',
+    'transfer-encoding': 'chunked',
+    connection: 'keep-alive',
+    'content-encoding': 'br',
+    'cache-control': 'no-cache',
+    'referrer-policy': 'strict-origin-when-cross-origin',
+    'set-cookie': 'whop-core.user-id=; path=/; expires=Mon, 06 Nov 1995 14:55:47 GMT; secure; samesite=lax, __cf_bm=SvxdL.sIhgp81ZsPf0zWJXzrHcBEjraTGl0GljnBFZA-1762440947-1.0.1.1-6DJ_eafFzEVbhJqEGqWDOWlXnJnnsYeJ4lPUtMxCa6zxG41yvANUvY8KFdNv860YqxgNHKQGRuP8RxFkIGnE1Uu1wBDE5nu_U5bh7PlD5yg; path=/; expires=Thu, 06-Nov-25 15:25:47 GMT; domain=.whop.com; HttpOnly; Secure; SameSite=None',
+    'strict-transport-security': 'max-age=63072000; includeSubDomains',
+    vary: 'Accept, Origin',
+    'x-content-type-options': 'nosniff',
+    'x-frame-options': 'SAMEORIGIN',
+    'x-permitted-cross-domain-policies': 'none',
+    'x-request-id': '9c1ec33e-6104-4f5a-bbf7-6a3271ba2aa0',
+    'x-runtime': '0.019187',
+    'x-whop-is-investigating': 'false',
+    'x-xss-protection': '0',
+    'cf-cache-status': 'DYNAMIC',
+    server: 'cloudflare',
+    'cf-ray': '99a56f0fb94547e8-BOM',
+    'alt-svc': 'h3=":443"; ma=86400'
+  },
+  error: {
+    error: {
+      message: "You are not authorized - requires: 'access_pass:basic:read'",
+      type: 'forbidden'
+    }
+  }
+}
+2:55:47 PM [express] GET /api/customer/company-products 304 in 1509ms :: {"products":[]}
